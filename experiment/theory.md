@@ -61,6 +61,6 @@ $$
 \begin{aligned}
 p((?,0,?,1)|(1,0,0,1))&=p(?|1)p(0|0)p(?|0)p(1|1)\\
 &=\epsilon\cdot(1-\epsilon)\cdot \epsilon\cdot (1-\epsilon)\\
-&=\epsilon^2(1-\epsilon^2).
+&=\epsilon^2(1-\epsilon2)^2.
 \end{aligned}
 $$
