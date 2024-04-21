@@ -50,6 +50,8 @@ $$
 p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}. 
 $$
 
+INCLUDE FIGURES HERE FOR TRANSITIONS-BASED DEPICTION OF BINARY ERASURE AND SYMMETRIC CHANNEl. FOR GAUSSIAN CHANNEL DRAW A BLOCK DIAGRAM WHICH SHOWS INPUT BEING X to an 'adder (circle with plus)' symbol which adds Z from down and X from the left, to give Y in the right, with Y=X+Z. 
+
 ## The Memoryless Property of the Channels
 
 We assume that the three channels we have considered in this virtual lab have the *memoryless* property and exist *without feedback*. To be precise, if we transmit a $n$-length sequence of bits denoted by $(x_1,\ldots,x_n)$ through any of these channels, the output is a sequence of bits $(y_1,\ldots,y_n)$, with probability as follows. 
@@ -61,6 +63,20 @@ $$
 \begin{aligned}
 p((?,0,?,1)|(1,0,0,1))&=p(?|1)p(0|0)p(?|0)p(1|1)\\
 &=\epsilon\cdot(1-\epsilon)\cdot \epsilon\cdot (1-\epsilon)\\
-&=\epsilon^2(1-\epsilon2)^2.
+&=\epsilon^2(1-\epsilon)^2.
 \end{aligned}
 $$
+
+More generally, we can say the following. Let $\bm{x}\in \mathbb{F}_2^n$ be an $n$-length binary vector. A vector $\bm{y} \in \{0,1,?\}^n$ is said to be *compatible* with $\bm{x}$ if $\bm{y}$ and $\bm{x}$ agree (i.e., are equal) in all positions which are unerased (not equal to "?" symbol) in $\bm{y}$. Otherwise, they are *not compatible*. For instance, the vectors $(0,1,0,1)$ and $(?,1,0,?)$ are compatible. However, the vectors $(0,1,0,1)$ and $(?,1,1,?)$ are not compatible, since the third bits of the two vectors are both unerased and not equal. 
+
+ For any vector $\bm{y}\in\{0,1,\epsilon\}^n$, let $w_e(\bm{y})$ denote the number of erased symbols in $\bm{y}$. Then for any $\bm{x}\in\mathbb{F}_2^n$, we have, in the memoryless $BEC(\epsilon)$ channel, the following to be true. 
+$$p(\bm{y}|\bm{x})=\begin{cases}
+\epsilon^{w_e(\bm{y})}(1-\epsilon)^{n-w_e(\bm{y})} & \text{if}~\bm{x} ~\text{and}~\bm{y}~\text{are compatible}\\
+0 & \text{otherwise}. 
+\end{cases}$$ 
+
+Turning our focus to the $BSC(p)$, we have the following. For any $\bm{x},\bm{y}\in\mathbb{F}_2^n$, let $d(\bm{x},\bm{y})$ denote the Hamming distance (number of positions where $\bm{x}$ and $\bm{y}$ have distinct values). For example, $d((1,0,1,0),(0,0,1,1))=2$ as the two vectors are distinct in the first and the fourth locations. Then, for the $BSC(p)$ memoryless channel, we have the following.
+$$p(\bm{y}|\bm{x})=p^{d(\bm{x},\bm{y})}(1-p)^{n-d(\bm{x},\bm{y})}.$$
+
+For the memoryless AWGN channel, we have, for any two vectors $\bm{x},\bm{y}\in\mathbb{R}^n$, 
+$$p(\bm{y}|\bm{x})=\frac{1}{(\pi N_0)^{n/2}}e^{-\frac{(||\bm{y}-\bm{x}||^2)}{N_0}}.$$
