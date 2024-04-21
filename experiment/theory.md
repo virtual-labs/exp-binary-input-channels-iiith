@@ -7,7 +7,11 @@ A communication channel is a medium through which communication happens. In this
 
 We generally use the notation $\cal X$ to denote the input alphabet of the channel. From the point of view of the receiver, the input to the channel is unknown, and hence is modelled as a random variable with some input probability distribution. We denote this input random variable as $X$. Similarly, the output of the channel, is a random variable denoted by $Y$. We assume that the output alphabet, the set of all values that the output can possibly take, is denoted by $\cal Y$. 
 
+---
+**NOTE**
 INCLUDE IMAGE HERE for a general binary input channel. 
+
+---
 
 ## Types of Channels considered in this virtual lab
 
@@ -50,7 +54,13 @@ $$
 p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}. 
 $$
 
-INCLUDE FIGURES HERE FOR TRANSITIONS-BASED DEPICTION OF BINARY ERASURE AND SYMMETRIC CHANNEl. FOR GAUSSIAN CHANNEL DRAW A BLOCK DIAGRAM WHICH SHOWS INPUT BEING X to an 'adder (circle with plus)' symbol which adds Z from down and X from the left, to give Y in the right, with Y=X+Z. 
+---
+**NOTE**
+[USE THIS KIND OF BLOCK to create a separate note with horizontal lines above and below on the page. ]
+
+INCLUDE FIGURES HERE FOR TRANSITIONS-BASED DEPICTION OF BINARY ERASURE AND SYMMETRIC CHANNEl. FOR GAUSSIAN CHANNEL DRAW A BLOCK DIAGRAM WHICH SHOWS INPUT BEING X to an 'adder (circle with plus)' symbol which adds Z from down and X from the left, to give Y in the right, with Y=X+Z.
+
+---
 
 ## The Memoryless Property of the Channels
 
