@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+    <title>
+        Generator Matrix
+    </title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/binary_erasure_channel.css">
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container" style="margin-top:1%;">
+
+        <div class="columns is-centered">
+            <div class="column is-one-quarter v-instruction-title">
+                Channel
+            </div>
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li class="is-active" id="Task1">
+                            <a>
+                                Binary Erasure Channel
+                            </a>
+                        </li>
+
+                        <li id="Task2" onclick="window.location.href = 'binary_symmetric_channel.html';">
+                            <a>
+                                Binary Symmetric Channel
+                            </a>
+                        </li>
+
+                        <li id="Task3" onclick="window.location.href = 'gaussian_channel.html';">
+                            <a>
+                                Gaussian Channel
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <ul style="list-style: disc;">
+                            <b>Quick theory overview:</b>
+                            <li> A generator matrix is a matrix whose rows form a basis for a linear code.
+                            </li>
+                        </ul>
+                        <br>
+                        <ul style="list-style: disc;">
+
+                            <b>Procedure:</b>
+
+                            <li>
+                                Enter if the received codeword is a valid vector.
+                            </li>
+
+                            <li>
+                                Click on <b>Yes!</b> if the matrix is a valid generator matrix, else click on <b>No!</b>.
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="columns is-centered">
+        <div class="column is-11-desktop is-12-tablet is-12-mobile">
+            <div class="v-datalist-container components-list">
+                <p id="sentCodword"></p> &nbsp;
+                <canvas id="becCanvas" width="300" height="150"></canvas>
+
+                <script>
+                    var canvas = document.getElementById("becCanvas");
+                    var ctx = canvas.getContext("2d");
+            
+                    // Box variables
+                    var boxX = 100; // X-coordinate of top-left corner of box
+                    var boxY = 25; // Y-coordinate of top-left corner of box
+                    var boxWidth = 100;
+                    var boxHeight = 100;
+            
+                    // Input arrow variables
+                    var inputStartX = 0;
+                    var inputStartY = 75;
+                    var inputEndX = boxX;
+                    var inputEndY = 75;
+                    var inputShift = 15; // Shift for arrowhead position
+            
+                    // Output arrow variables
+                    var outputStartX = boxX + boxWidth;
+                    var outputStartY = 75;
+                    var outputEndX = canvas.width;
+                    var outputEndY = 75;
+                    var outputShift = 15; // Shift for arrowhead position
+            
+                    // Draw the box
+                    ctx.fillStyle = "lightblue";
+                    ctx.fillRect(boxX, boxY, boxWidth, boxHeight);
+
+                    // Draw BEC channel
+                    var paddingBEC = 15;
+                    ctx.beginPath();
+                    // bottom parallel line
+                    // console.log(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
+                    ctx.moveTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
+                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + boxHeight - paddingBEC);
+
+                    // top parallel line
+                    ctx.moveTo(boxX + paddingBEC, boxY + paddingBEC);
+                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + paddingBEC);
+
+                    // slanted lines 
+                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
+                    ctx.lineTo(boxX + paddingBEC, boxY + paddingBEC);
+
+                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
+                    ctx.lineTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
+
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+
+                    ctx.closePath();
+                    
+
+                    // Draw input arrow
+                    ctx.beginPath();
+                    ctx.moveTo(inputStartX, inputStartY);
+                    ctx.lineTo(inputEndX, inputEndY);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
+            
+                    ctx.beginPath();
+                    ctx.moveTo(inputEndX - inputShift, inputEndY - 5);
+                    ctx.lineTo(inputEndX, inputEndY);
+                    ctx.lineTo(inputEndX - inputShift, inputEndY + 5);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
+            
+                    // Draw output arrow
+                    ctx.beginPath();
+                    ctx.moveTo(outputStartX, outputStartY);
+                    ctx.lineTo(outputEndX, outputEndY);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
+            
+                    ctx.beginPath();
+                    ctx.moveTo(outputEndX - outputShift, outputEndY - 5);
+                    ctx.lineTo(outputEndX, outputEndY);
+                    ctx.lineTo(outputEndX - outputShift, outputEndY + 5);
+                    ctx.strokeStyle = "black";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
+            
+                    // Text for input and output (optional)
+                    // ctx.font = "18px Arial";
+                    // ctx.fillStyle = "red";
+                    // ctx.fillText("Input", 0, inputStartY);
+            
+                    // ctx.fillStyle = "green";
+                    // ctx.fillText("Output", canvas.width - 60, outputStartY);
+                </script>
+
+             &nbsp; <p id="receivedCodeword"></p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+    style="margin-top:-1.5%">
+    <div class="column is-8-desktop is-12-tablet is-12-mobile">
+        <div class="box-question">
+
+            <section id="isGeneratorQuestion">
+                <br>
+                Is the output of the channel a valid ? Click Yes or No.
+                <br>
+                <br>
+                <button class="v-button" onclick="yesValidGeneratorMatrix()" form="form1">Yes!</button>
+                <button class="v-button" onclick="notValidGeneratorMatrix()" form="form1">No!</button>
+                <br>
+
+                <form action="" method="get" id="generatorForm" onsubmit="return false">
+                    <br>
+                    <div>
+                        <label for="dimensionInput">Enter probability of above output given above input:</label>
+                        <input type="number" id="dimensionInput" style="width: 2em;">
+                    </div>
+                </form>
+
+
+            </section>
+
+            <section id="rateQuestion" style="display:none ;">
+                <form action="" method="get" id="rateForm" onsubmit="return false">
+                    What is the rate of the code?
+
+                    <br>
+
+                    Rate =
+                    <span class="stacked-fraction">
+                        <div class="numerator">
+                            <input type="number" id="dimensionInput" placeholder="dimension" style="width: 10em;">
+                            <!-- Adjust input width as needed -->
+                        </div>
+                        <div class="denominator"><input type="number" id="codelengthInput" placeholder="length of codeword" style="width: 10em;"></div>
+                    </span>
+
+                </form>
+                <br>
+                <button class="v-button" onclick="checkRate()" form="form2">Check</button>
+                <button class="v-button" onclick="reset()">Reset</button>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="column is-3-desktop is-4-tablet is-12-mobile">
+        <div class="v-datalist-container components-list">
+            <div class="v-datalist-title">Observations</div>
+            <div id="observations">
+                <span id="dimensionEntered">
+                </span>
+                <br>
+                <span id="rateEntered">
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/binary_erasure_channel.js"></script>
+</body>
+
+</html>
