@@ -16,7 +16,6 @@
 
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </head>
 
@@ -43,7 +42,7 @@
                             </a>
                         </li>
 
-                        <li id="Task3" onclick="window.location.href = '.html';">
+                        <li id="Task3" onclick="window.location.href = 'gaussian_channel.html';">
                             <a>
                                 Gaussian Channel
                             </a>
@@ -62,7 +61,7 @@
                     <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
                         <ul style="list-style: disc;">
                             <b>Quick theory overview:</b>
-                            <li> A generator matrix is a matrix whose rows form a basis for a linear code.
+                            <li> In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
                             </li>
                         </ul>
                         <br>
@@ -71,13 +70,18 @@
                             <b>Procedure:</b>
 
                             <li>
-                                Enter if the received codeword is a valid vector.
+                                Given a codeword, identify what are the possible outputs of the Binary Symmetric Channel.
                             </li>
 
                             <li>
-                                Click on <b>Yes!</b> if the matrix is a valid generator matrix, else click on <b>No!</b>.
+                                Select the output codewords accordingly and click on the <b>Submit</b> button.
                             </li>
-
+                            <li>
+                                Click on the <b>Reset</b> button to reset all your selected choices and restart the exercise.
+                            </li>
+                            <li>
+                                Click on the <b>Next</b> button to go to next exercise.
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -86,181 +90,125 @@
     </div>
     <br>
 
-    <div class="columns is-centered">
-        <div class="column is-11-desktop is-12-tablet is-12-mobile">
-            <div class="v-datalist-container components-list">
-                <p id="sentCodword"></p> &nbsp;
-                <canvas id="becCanvas" width="300" height="150"></canvas>
 
-                <script>
-                    var canvas = document.getElementById("becCanvas");
-                    var ctx = canvas.getContext("2d");
-            
-                    // Box variables
-                    var boxX = 100; // X-coordinate of top-left corner of box
-                    var boxY = 25; // Y-coordinate of top-left corner of box
-                    var boxWidth = 100;
-                    var boxHeight = 100;
-            
-                    // Input arrow variables
-                    var inputStartX = 0;
-                    var inputStartY = 75;
-                    var inputEndX = boxX;
-                    var inputEndY = 75;
-                    var inputShift = 15; // Shift for arrowhead position
-            
-                    // Output arrow variables
-                    var outputStartX = boxX + boxWidth;
-                    var outputStartY = 75;
-                    var outputEndX = canvas.width;
-                    var outputEndY = 75;
-                    var outputShift = 15; // Shift for arrowhead position
-            
-                    // Draw the box
-                    ctx.fillStyle = "lightblue";
-                    ctx.fillRect(boxX, boxY, boxWidth, boxHeight);
-
-                    // Draw BEC channel
-                    var paddingBEC = 15;
-                    ctx.beginPath();
-                    // bottom parallel line
-                    // console.log(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-                    ctx.moveTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + boxHeight - paddingBEC);
-
-                    // top parallel line
-                    ctx.moveTo(boxX + paddingBEC, boxY + paddingBEC);
-                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + paddingBEC);
-
-                    // slanted lines 
-                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
-                    ctx.lineTo(boxX + paddingBEC, boxY + paddingBEC);
-
-                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
-                    ctx.lineTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-
-                    ctx.closePath();
-                    
-
-                    // Draw input arrow
-                    ctx.beginPath();
-                    ctx.moveTo(inputStartX, inputStartY);
-                    ctx.lineTo(inputEndX, inputEndY);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    ctx.beginPath();
-                    ctx.moveTo(inputEndX - inputShift, inputEndY - 5);
-                    ctx.lineTo(inputEndX, inputEndY);
-                    ctx.lineTo(inputEndX - inputShift, inputEndY + 5);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    // Draw output arrow
-                    ctx.beginPath();
-                    ctx.moveTo(outputStartX, outputStartY);
-                    ctx.lineTo(outputEndX, outputEndY);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    ctx.beginPath();
-                    ctx.moveTo(outputEndX - outputShift, outputEndY - 5);
-                    ctx.lineTo(outputEndX, outputEndY);
-                    ctx.lineTo(outputEndX - outputShift, outputEndY + 5);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    // Text for input and output (optional)
-                    // ctx.font = "18px Arial";
-                    // ctx.fillStyle = "red";
-                    // ctx.fillText("Input", 0, inputStartY);
-            
-                    // ctx.fillStyle = "green";
-                    // ctx.fillText("Output", canvas.width - 60, outputStartY);
-                </script>
-
-             &nbsp; <p id="receivedCodeword"></p>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
-    style="margin-top:-1.5%">
-    <div class="column is-8-desktop is-12-tablet is-12-mobile">
-        <div class="box-question">
-
-            <section id="isGeneratorQuestion">
-                <br>
-                Is the output of the channel a valid ? Click Yes or No.
-                <br>
-                <br>
-                <button class="v-button" onclick="yesValidGeneratorMatrix()" form="form1">Yes!</button>
-                <button class="v-button" onclick="notValidGeneratorMatrix()" form="form1">No!</button>
-                <br>
-
-                <form action="" method="get" id="generatorForm" onsubmit="return false">
-                    <br>
-                    <div>
-                        <label for="dimensionInput">Enter probability of above output given above input:</label>
-                        <input type="number" id="dimensionInput" style="width: 2em;">
-                    </div>
-                </form>
-
-
-            </section>
-
-            <section id="rateQuestion" style="display:none ;">
-                <form action="" method="get" id="rateForm" onsubmit="return false">
-                    What is the rate of the code?
-
-                    <br>
-
-                    Rate =
-                    <span class="stacked-fraction">
-                        <div class="numerator">
-                            <input type="number" id="dimensionInput" placeholder="dimension" style="width: 10em;">
-                            <!-- Adjust input width as needed -->
-                        </div>
-                        <div class="denominator"><input type="number" id="codelengthInput" placeholder="length of codeword" style="width: 10em;"></div>
-                    </span>
-
-                </form>
-                <br>
-                <button class="v-button" onclick="checkRate()" form="form2">Check</button>
-                <button class="v-button" onclick="reset()">Reset</button>
-            </section>
-
-        </div>
-    </div>
-
-    <div class="column is-3-desktop is-4-tablet is-12-mobile">
-        <div class="v-datalist-container components-list">
-            <div class="v-datalist-title">Observations</div>
-            <div id="observations">
-                <span id="dimensionEntered">
-                </span>
-                <br>
-                <span id="rateEntered">
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
     
+    
+    <section id="bscp1" style="display:block ;">
+        <div class="columns is-centered">
+            <div class="column is-11-desktop is-12-tablet is-12-mobile">
+                <div class="v-datalist-container components-list">
+                    <p>Consider a Codeword</p> &nbsp; <p id="sentCodeword"></p> &nbsp;
+                </div>
+            </div>
+        </div>
 
+            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+                style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                    <div class="box-question">
+                        
+                        
+                            <form action="" method="get" id="f1" onsubmit="return false">
+                            <table align="center">
+                                <tr>
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a1" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a2" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a3" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a4" onClick="change(id)"></button>
+                                    </div></td>
+                                </tr>
+        
+                                <tr>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a5" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a6" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a7" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a8" onClick="change(id)"></button>
+                                    </div></td>
+                                </tr>
+                            </table>
+                            </form>
+                            <br>
+                            <button class="v-button" role="button" onClick= "check1()"> Submit </button>
+					        <button class="v-button" role="button" onClick= "reset()"> Reset </button>
+					        <button class="v-button" role="button" onclick = "nextpage()"> Next </button>
+                        </div>    
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-4-tablet is-12-mobile">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="bscobs1">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                        <section id="bscp2" style="display:none ;">
+                            <div class="columns is-centered">
+                                <div class="column is-11-desktop is-12-tablet is-12-mobile">
+                                    <div class="v-datalist-container components-list">
+                                        <p>Consider a Codeword</p> &nbsp; <p id="sentCodeword"></p> &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                                <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                                    <div class="box-question">
+                                    <form action="" method="get" id="f2" onsubmit="return false">
+                                <br>
+                                <div>
+                                    <label for="eps">Enter the value of the power of &epsilon;</label>
+                                    <input type="number" id="eps" style="width: 2em;">
+                                </div>
+                                <div>
+                                    <label for="epsmin1">Enter the value of the power of (1 - &epsilon;)</label>
+                                    <input type="number" id="epsmin1" style="width: 2em;">
+                                </div>
+                            </form>
+                            <br>
+                            Based on your answer above, is the displayed matrix a valid generator matrix of a linear code? Click Yes or No.
+                            <br>
+                            <br>
+        
+                            <button class="v-button" role="button" onclick="check2()">Submit</button>
+                            <button class="v-button" role="button" onClick= "reset()"> Reset </button>
+                            <button class="v-button" role="button" onclick = "prevpage()"> Previous </button>  
+                        </div>    
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-4-tablet is-12-mobile">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="bscobs2">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
 
     <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
     <script src="./js/binary_symmetric_channel.js"></script>

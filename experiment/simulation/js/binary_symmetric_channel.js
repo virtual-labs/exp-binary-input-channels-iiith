@@ -1,160 +1,184 @@
 const codewords = [
-    {
-        codeword: [0, 0, 0, 0],
-    },
-    {
-        codeword: [1, 1, 1, 1],
-    },
-    {
-        codeword: [1, 0, 1, 0],
-    },
-    {
-        codeword: [0, 1, 0, 1],
-    },
+    {codeword: [0, 0, 0, 0],
+    },{codeword: [0, 0, 0, 1],
+    },{codeword: [0, 0, 1, 0],
+    },{codeword: [0, 0, 1, 1],
+    },{codeword: [0, 1, 0, 0],
+    },{codeword: [0, 1, 0, 1],
+    },{codeword: [0, 1, 1, 0],
+    },{codeword: [0, 1, 1, 1],
+    },{codeword: [1, 0, 0, 0],
+    },{codeword: [1, 0, 0, 1],
+    },{codeword: [1, 0, 1, 0],
+    },{codeword: [1, 0, 1, 1],
+    },{codeword: [1, 1, 0, 0],
+    },{codeword: [1, 1, 0, 1],
+    },{codeword: [1, 1, 1, 0],
+    },{codeword: [1, 1, 1, 1],}
 ];
 
-var randomRandomCodeword = selectRandomCodeword();
-var probabilityFlip = Math.random();
-// var dim = randomGeneratorMatrix.dim;
-// var codelength = randomGeneratorMatrix.matrix[0].length;
+const eps = "\u03B5";
 
-document.getElementById("sentCodword").innerHTML = formatMatrix(randomRandomCodeword.codeword);
-// document.getElementById("matrixInfo").innerHTML = "Dimensions: " + randomGeneratorMatrix.dim.join("x") + ", Length: " + randomGeneratorMatrix.length;
+const wrongans = [
+    {wans: [0, eps , 0, eps],
+    },{wans: [0, 0.64, 0, 1.23],
+    },{wans: [0, 0, 1.24, 0],
+    },{wans: [0, 0, 1, eps],
+    },{wans: [0, 1, eps, 0],
+    },{wans: [0, 1, 0.91, 1],
+    },{wans: [eps, 1, 1, 0],
+    },{wans: [0, 1, 1.98, 1],
+    },{wans: [1, eps, 0, 0],
+    },{wans: [1, 0, eps, 1],
+    },{wans: [1, 0.09, 1, 0],
+    },{wans: [1, 0, eps, 1],
+    },{wans: [1, 1, 0.52, 0],
+    },{wans: [1, eps, 0, 1],
+    },{wans: [1, 1.73, 1, 0],
+    },{wans: [1, 1, eps, 1],}
+];
+
+document.getElementById("sentCodeword").innerHTML = formatMatrix(selectRandomCodeword().codeword);
 
 
 function selectRandomCodeword() {
     const randomIndex = Math.floor(Math.random() * codewords.length);
     return codewords[randomIndex];
 }
-
-// function BinaryErasureChannel() {
-// replace random codeword with erasure with probability probabilityFlip
-const receivedCodeword = randomRandomCodeword.codeword.map((bit) => {
-    if (Math.random() < probabilityFlip) {
-        return "\\epsilon";
-    }
-    return bit;
+function selectRandomWans() {
+    const randomwIndex = Math.floor(Math.random() * wrongans.length);
+    return wrongans[randomwIndex];
 }
-);
-
-document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedCodeword);
-// }
 
 function formatMatrix(matrix) {
-    return "\\(\\begin{bmatrix} " + matrix + " \\end{bmatrix}\\)";
+    return "[" + matrix + "]";
 }
 
-function reset() {
-    const dimensionEntered = document.getElementById("dimensionEntered");
-    dimensionEntered.innerHTML = "";
+function reset(){
+    console.log("function called")
+    const bscp1 = document.getElementById("bscp1");
+    const bscp2 = document.getElementById("bscp2");
+    const f1 = document.getElementById("f1");
+    const f2 = document.getElementById("f2");
+    const bscobs1 = document.getElementById("bscobs1");
+    const bscobs2 = document.getElementById("bscobs2");
 
-    initial();
+    bscobs1.innerHTML = "";
+    bscobs2.innerHTML = "";
+
+    bscp1.style.display = "block";
+    bscp2.style.display = "none";
+
+    var arrsplice = [];
+    var codebuttons = [];
+    var wansbuttons = [];
 }
 
-function initial() {
+var buttonIds = ["a1", "a2", "a3", "a4","a5", "a6", "a7", "a8"];
 
-    randomGeneratorMatrix = selectRandomGeneratorMatrix();
-    dim = randomGeneratorMatrix.dim;
-    codelength = randomGeneratorMatrix.matrix[0].length;
+const arrsplice = buttonIds.slice();
 
-    const generatorMatrixElement = document.getElementById("generatorMatrix");
-    generatorMatrixElement.innerHTML = " \\(A \\)= " + formatMatrix(randomGeneratorMatrix.matrix);
-
-    // Trigger MathJax to typeset the updated content
-    MathJax.typeset([generatorMatrixElement]);
-
-    const isGeneratorQuestion = document.getElementById("isGeneratorQuestion");
-    const rateQuestion = document.getElementById("rateQuestion");
-    const generatorForm = document.getElementById("generatorForm");
-    const rateForm = document.getElementById("rateForm");
-
-    const rateEntered = document.getElementById("rateEntered");
-
-    // dimensionEntered.innerHTML = "Try with new matrix";
-    rateEntered.innerHTML = "";
-
-    isGeneratorQuestion.style.display = "block";
-    rateQuestion.style.display = "none";
-
-    generatorForm.reset();
-    rateForm.reset();
+// Shuffle the array using the Fisher-Yates algorithm
+for (let i = arrsplice.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arrsplice[i], arrsplice[j]] = [arrsplice[j], arrsplice[i]];
 }
 
+codebuttons = arrsplice.slice(0, 3);
+wansbuttons = arrsplice.slice(3, 8);
 
-function yesValidGeneratorMatrix() {
-    const dim = randomGeneratorMatrix.dim;
-    const dimensionEntered = parseInt(document.getElementById("dimensionInput").value);
-    const isGeneratorQuestion = document.getElementById("isGeneratorQuestion");
-    if (dimensionEntered == dim) {
-        if (dim === randomGeneratorMatrix.matrix.length) {
-            document.getElementById("dimensionEntered").innerHTML = "<b>Yay! Your answer is correct. This is indeed a true generator matrix. It has rank " + parseInt(dim) + " (full row-rank, i.e., all rows are linearly independent), and has " + parseInt(codelength) + " columns. Now you need to enter the rate of the code. </b>";
-            document.getElementById("dimensionEntered").style.color = "green";
 
-            isGeneratorQuestion.style.display = "none";
-            rateQuestion.style.display = "block";
-        } else {
-            document.getElementById("dimensionEntered").innerHTML = "<b>Incorrect. Please check if the matrix is full rank.</b>";
-            document.getElementById("dimensionEntered").style.color = "red";
-        }
-    } else {
-        document.getElementById("dimensionEntered").innerHTML = "<b>Incorrect. Please try again.</b>";
-        document.getElementById("dimensionEntered").style.color = "red";
+window.onload = function() {
+    wansbuttons.forEach(function(wansbutton) {
+        // Get the button element
+        var buttonw = document.getElementById(wansbutton);
+        
+        // Set the random number as the button's text
+        buttonw.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(selectRandomWans().wans) + '</span>';
+    });
+
+    codebuttons.forEach(function(codebutton) {
+        // Get the button element
+        var button = document.getElementById(codebutton);
+        
+        // Set the random number as the button's text
+        button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(selectRandomCodeword().codeword) + '</span>';
+    });
+};
+
+function nextpage() {
+    console.log("function called")
+    const bscp1 = document.getElementById("bscp1");
+    const bscp2 = document.getElementById("bscp2");
+    const f1 = document.getElementById("f1");
+    const f2 = document.getElementById("f2");
+    const bscobs1 = document.getElementById("bscobs1");
+    const bscobs2 = document.getElementById("bscobs2");
+
+    bscobs1.innerHTML = "";
+    bscobs2.innerHTML = "";
+
+    bscp1.style.display = "none";
+    bscp2.style.display = "block";
+}
+
+function prevpage() {
+    console.log("function called")
+    const bscp1 = document.getElementById("bscp1");
+    const bscp2 = document.getElementById("bscp2");
+    const f1 = document.getElementById("f1");
+    const f2 = document.getElementById("f2");
+    const bscobs1 = document.getElementById("bscobs1");
+    const bscobs2 = document.getElementById("bscobs2");
+
+    bscobs1.innerHTML = "";
+    bscobs2.innerHTML = "";
+
+    bscp1.style.display = "block";
+    bscp2.style.display = "none";
+}
+
+var array1 = [];
+
+function change(id) {
+    const element = document.getElementById(id);
+
+    if (element.style.backgroundColor === "rgb(26, 255, 0)") {
+        element.style.backgroundColor = "rgb(200, 200, 200)";
+            const index = array1.indexOf(id);
+            if (index !== -1) {
+                array1.splice(index, 1);
+            }
+}   else {
+        element.style.backgroundColor = "rgb(26, 255, 0)";
+        array1.push(id);
     }
-
 }
 
-function notValidGeneratorMatrix() {
-    const dim = randomGeneratorMatrix.dim;
-    const dimensionEntered = parseInt(document.getElementById("dimensionInput").value);
-    const isGeneratorQuestion = document.getElementById("isGeneratorQuestion");
+function check1() {
+    const bscobs1 = document.getElementById("bscobs1");
+    const selectedCodewords = document.querySelectorAll('#bscp1 .code-word button[style="background-color: rgb(26, 255, 0);"]');
 
-
-    if (dimensionEntered == dim) {
-        if (dimensionEntered != randomGeneratorMatrix.matrix.length) {
-            document.getElementById("dimensionEntered").innerHTML = "<b>Correct Answer!!!</b>";
-            document.getElementById("dimensionEntered").style.color = "green";
-
-            // isGeneratorQuestion.style.display = "none";
-            // rateQuestion.style.display = "block";
-
-
-
-            document.getElementById("dimensionEntered").innerHTML = "<b>Yes, your answer that the previously showed matrix is not a generator matrix, is absolutely correct! Now, look at this new matrix, and answer the question again.</b>";
-
-            initial();
-        } else {
-            document.getElementById("dimensionEntered").innerHTML = "<b>Incorrect. Please check if the matrix is full rank or not.</b>";
-            document.getElementById("dimensionEntered").style.color = "red";
-        }
-    } else {
-        document.getElementById("dimensionEntered").innerHTML = "<b>Incorrect. Please try again.</b>";
-        document.getElementById("dimensionEntered").style.color = "red";
-    }
-
-}
-
-function checkRate() {
-    const dimensionEntered = document.getElementById("dimensionInput");
-    const rateEntered = document.getElementById("rateEntered");
-
-    const dimensionInput = parseInt(document.getElementById("dimensionInput").value);
-    const codelengthInput = parseFloat(document.getElementById("codelengthInput").value);
-
-    if (dimensionInput == dim && codelengthInput == codelength) {
-        rateEntered.innerHTML = "<b>Correct Answer!!!</b>";
-        rateEntered.style.color = "green";
+    if (selectedCodewords.length == 0) {
+        bscobs1.innerHTML = "No output codeword has been selected for experiment 1. Choose the codewords by clicking on them.";
+        bscobs1.style.color = "black";
     }
     else {
-        if (rateEntered.innerHTML == "<b>Incorrect. Please try again.</b>") {
-            rateEntered.innerHTML = "<b>Incorrect. Please try again.</b>";
-            rateEntered.style.color = "red";
-            return;
-        }
-        else {
-            rateEntered.innerHTML = "<b>Incorrect. Please try again.</b>";
-            rateEntered.style.color = "red";
-            return;
+        const selectedIds = Array.from(selectedCodewords).map(button => button.id);
+        const correctIds = codebuttons.slice();
+        const isCorrect = correctIds.every(id => selectedIds.includes(id)) && selectedIds.length === correctIds.length;
+
+
+        if (isCorrect) {
+            bscobs1.innerHTML = "<b>Correct! The selected output codewords are indeed the right possible outputs for the given codeword.</b>";
+            bscobs1.style.color = "green";
+        } else {
+            bscobs1.innerHTML = "<b>Kindly check as to what the correct output codewords could be by going throught the Theory.</b>";
+            bscobs1.style.color = "red";
         }
     }
+}
+
+function check2(){
 
 }
