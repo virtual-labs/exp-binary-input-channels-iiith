@@ -38,7 +38,9 @@ const wrongans = [
     },{wans: [1, 1, eps, 1],}
 ];
 
-document.getElementById("sentCodeword").innerHTML = formatMatrix(selectRandomCodeword().codeword);
+var sentcodeword = Array.from(selectRandomCodeword().codeword);
+document.getElementById("sentCodeword").innerHTML = sentcodeword;
+document.getElementById("newCodeword").innerHTML = sentcodeword;
 
 
 function selectRandomCodeword() {
@@ -138,6 +140,10 @@ function nextpage() {
 
     bscp1.style.display = "none";
     bscp2.style.display = "block";
+
+    document.getElementById("codeword1").innerHTML = formatMatrix(corrcw[0].toString());
+    document.getElementById("codeword2").innerHTML = formatMatrix(corrcw[1].toString());
+    document.getElementById("codeword3").innerHTML = formatMatrix(corrcw[2].toString());
 }
 
 function prevpage() {
@@ -191,7 +197,7 @@ function check1() {
 
 
         if (isCorrect) {
-            bscobs1.innerHTML = '{' + corrcw[0] + ";" + corrcw[1] + ";" + corrcw[2] + '}';
+            bscobs1.innerHTML = '{' + "[" + corrcw[0] + "];" + "[" +  corrcw[1] + "];" + "[" +  corrcw[2] + ']}';
             bscobs12.innerHTML = "<b>Correct! The above selected output codewords are indeed the right possible outputs for the given codeword.</b>";
             bscobs1.style.color = "green";
         } else {
@@ -201,39 +207,42 @@ function check1() {
     }
 }
 
-function count_num_of_Ones(bin_array,n) {
-    let num_of_ones=0;
-    for (let ind = 0; ind < n; ind++) {
-       if(bin_array[ind]==1){
-          num_of_ones++;
-       }
+function compareArrays(arr1, arr2) {
+    var p = 0;
+    var p1 = 0;
+
+    for(let i=0; i<arr1.length; i++) {
+        if(arr1[i] != arr2[i]) {
+            p++;
+        }
+        else {
+            p1++;
+        }
     }
-    return num_of_ones;
+    return [p,p1];      
 }
 
-var a1 = count_num_of_Ones(corrcw[0],4);
-var a2 = count_num_of_Ones(corrcw[1],4);
-var a3 = count_num_of_Ones(corrcw[2],4);
-
-const codewordanswers = {
-    cw1 : corrcw[0],
-    cw2 : corrcw[1],
-    cw2 : corrcw[2]
-};
 
 
-document.getElementById("codeword1").innerHTML = corrcw[0].toString();
-document.getElementById("codeword2").innerHTML = corrcw[1].toString();
-document.getElementById("codeword3").innerHTML = corrcw[2].toString();
 
 function check2(){
-    console.log(a1)
+
+    let [a11,a12] = compareArrays(corrcw[0], sentcodeword);
+    let [a21,a22] = compareArrays(corrcw[1], sentcodeword);
+    let [a31,a32] = compareArrays(corrcw[2], sentcodeword);
+
+    
     var p11 = parseInt(document.getElementById("p11").value);
     var p12 = parseInt(document.getElementById("p12").value);
     var p21 = parseInt(document.getElementById("p21").value);
     var p22 = parseInt(document.getElementById("p22").value);
     var p31 = parseInt(document.getElementById("p31").value);
     var p32 = parseInt(document.getElementById("p32").value);
+
+    console.log(a11, p11)
+    console.log(a12, p12)
+
+    const bscobs2 = document.getElementById("bscobs2");
 
     if (isNaN(p11) || isNaN(p12) || isNaN(p21) || isNaN(p22) || isNaN(p31) || isNaN(p32) ||
         p11 < 0 || p11 > 9 || p12 < 0 || p12 > 9 || p21 < 0 || p21 > 9 ||
@@ -243,5 +252,32 @@ function check2(){
         return;
     }
 
+    switch (true) {
+            
+        case (a11 === p11 && a12 === p12 && a21 === p21 && a22 === p22 && a31 === p31 && a32 === p32):
+            document.getElementById("bscobs2").innerHTML = "Correct Answer!";
+            document.getElementById("bscobs2").style.color = "green";
+            break;
+
+        case (a11 !== p11 || a12 !== p12):
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (a) again";
+            document.getElementById("bscobs2").style.color = "blue";
+            break;
+
+        case (a21 !== p21 || a22 !== p22):
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (b) again";
+            document.getElementById("bscobs2").style.color = "blue";
+            break;
+    
+        case (a31 !== p31 || a32 !== p32):
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (c) again";
+            document.getElementById("bscobs2").style.color = "blue";
+            break;
+    
+        default:
+            document.getElementById("obs1").innerHTML = "Incorrect Answer! <br> Please go through the Instructions, and try again.";
+            document.getElementById("obs1").style.color = "red";
+            break;
+    }
 
 }

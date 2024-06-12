@@ -77,6 +77,12 @@
                                 Select the output codewords accordingly and click on the <b>Submit</b> button.
                             </li>
                             <li>
+                                For the next question you must enter the probability of recieving each of the previously selected output codewords.
+                            </li>
+                            <li>
+                                Once you have entered all the values, click on the <b>Submit</b> button.
+                            </li>
+                            <li>
                                 Click on the <b>Reset</b> button to reset all your selected choices and restart the exercise.
                             </li>
                             <li>
@@ -99,7 +105,7 @@
                 <div class="v-datalist-container components-list">
                     <p>A codeword needs to be sent through a Binary Symmetric Channel as shown below. What could be the possible outputs of the channel?</p>
                     <br><br>
-                    <p id="sentCodeword"></p><p>&rarr;</p><img src="./images/bsc.png" alt="Binary Symmetric Channel" style="width:125px;height:125px;"><p>&rarr;</p><p>?</p> &nbsp;
+                    <p> [ <p id="sentCodeword"></p> ]</p><p>&rarr;</p><img src="./images/bsc.png" alt="Binary Symmetric Channel" style="width:125px;height:125px;"><p>&rarr;</p><p>?</p> &nbsp;
                 </div>
             </div>
         </div>
@@ -175,7 +181,7 @@
                             <div class="columns is-centered">
                                 <div class="column is-11-desktop is-12-tablet is-12-mobile">
                                     <div class="v-datalist-container components-list">
-                                        <p>For the previously selected possible output codewords enter the probability of recieving each of these outputs.</p>
+                                        <p>For the codeword [<p id="newCodeword"></p>] enter the probability of recieving each of the previously selected output codewords.</p>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +191,7 @@
                                     <form action="" method="get" id="f2" onsubmit="return false">
                                 <br>
                                 <div>
-                                    <ul>
+                                    <ol type="a">
                                         <li>
                                             <p>Enter the probability of recieving the codeword <label id = "codeword1"></label>.</p>
                                             <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p11" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p12" style="width: 2em;"></sup></label></p>
