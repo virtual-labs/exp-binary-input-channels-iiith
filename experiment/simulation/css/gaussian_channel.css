@@ -1,0 +1,25 @@
+div#mathContainer {
+    padding: 2%;
+}
+
+/* .mathContainer input {
+    padding: 1%;
+    margin: 1%;
+} */
+
+#questionStatement {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: start;
+    justify-content: center;
+}
+
+.channelBlock {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

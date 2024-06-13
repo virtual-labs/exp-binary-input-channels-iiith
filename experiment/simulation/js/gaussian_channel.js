@@ -15,16 +15,108 @@ const codewords = [
 
 var randomRandomCodeword = selectRandomCodeword();
 var probabilityFlip = Math.random();
+
+var noiseVariance = 5;
+var noise = parseFloat(gaussian(0, Math.sqrt(noiseVariance))().toFixed(2)); // clip to 2 decimal places
+var sentX = Math.random() > 0.5 ? 1 : 0;
+var sentY = sentX + noise  // send 0 or 1
 // var dim = randomGeneratorMatrix.dim;
 // var codelength = randomGeneratorMatrix.matrix[0].length;
 
-document.getElementById("sentCodword").innerHTML = formatMatrix(randomRandomCodeword.codeword);
+document.getElementById("sentCodeword").innerHTML = sentX.toString();
+document.getElementById("receivedCodeword").innerHTML = sentY.toString();
+// document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedCodeword);
+// }
+// document.getElementById("sentCodword").innerHTML = formatMatrix(randomRandomCodeword.codeword);
 // document.getElementById("matrixInfo").innerHTML = "Dimensions: " + randomGeneratorMatrix.dim.join("x") + ", Length: " + randomGeneratorMatrix.length;
 
+
+// https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
+function gaussian(mean, stdev) {
+    let y2;
+    let use_last = false;
+    return function () {
+        var y1;
+        if (use_last) {
+            y1 = y2;
+            use_last = false;
+        } else {
+            let x1, x2, w;
+            do {
+                x1 = 2.0 * Math.random() - 1.0;
+                x2 = 2.0 * Math.random() - 1.0;
+                w = x1 * x1 + x2 * x2;
+            } while (w >= 1.0);
+            w = Math.sqrt((-2.0 * Math.log(w)) / w);
+            y1 = x1 * w;
+            y2 = x2 * w;
+            use_last = true;
+        }
+
+        var retval = mean + stdev * y1;
+        //   if (retval > 0)
+        return retval;
+        //   return -retval;
+    }
+}
 
 function selectRandomCodeword() {
     const randomIndex = Math.floor(Math.random() * codewords.length);
     return codewords[randomIndex];
+}
+
+
+
+function checkProbabilityQuestion() {
+    // const inputs = document.querySelectorAll('.mathContainer input');
+
+    const probabilityQuestion = document.getElementById("probabilityQuestion");
+    const probabilityQuestionObservation = document.getElementById("probabilityQuestionObservation");
+    const distQuestion = document.getElementById("distQuestion");
+
+
+    let N_0_first = parseFloat(document.querySelectorAll('.mathContainer #N_0_first')[0].value);
+    let N_0_second = parseFloat(document.querySelectorAll('.mathContainer #N_0_second')[0].value);
+    let y_x = document.querySelectorAll('.mathContainer #y_x')[0].value;
+
+    console.log(N_0_first, noiseVariance, N_0_second, y_x==noise)
+
+
+    // let output = '';
+    // inputs.forEach(input => {
+    //     output += `Input ID: ${input.id}, Value: ${input.value}\n`;
+    // });
+
+    if (N_0_first/2 == noiseVariance && N_0_second/2 == noiseVariance && y_x == noise) {
+        probabilityQuestionObservation.innerHTML = "<b>Correct Answer!!!</b>";
+        probabilityQuestionObservation.style.color = "green";
+    }
+    else if ((N_0_first/2 != noiseVariance || N_0_second/2 != noiseVariance) && y_x == noise) {
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance.</b>";
+        probabilityQuestionObservation.style.color = "red";
+    }
+    else if ((N_0_first/2 == noiseVariance && N_0_second/2 == noiseVariance) && y_x != noise) {
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check answer again.</b>";
+        probabilityQuestionObservation.style.color = "red";
+    }
+    else {
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. </b>";
+        probabilityQuestionObservation.style.color = "red";
+    }
+
+    // probabilityQuestion.style.display = "none";
+    // distQuestion.style.display = "block";
+
+    // document.getElementById('probabilityQuestionObservation').innerText = output;
+    // console.log(output);
+}
+
+function nextProbabilityQuestion() {
+    const probabilityQuestion = document.getElementById("probabilityQuestion");
+    const distQuestion = document.getElementById("distQuestion");
+
+    probabilityQuestion.style.display = "none";
+    distQuestion.style.display = "block";
 }
 
 // function BinaryErasureChannel() {
@@ -37,8 +129,6 @@ const receivedCodeword = randomRandomCodeword.codeword.map((bit) => {
 }
 );
 
-document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedCodeword);
-// }
 
 function formatMatrix(matrix) {
     return "\\(\\begin{bmatrix} " + matrix + " \\end{bmatrix}\\)";
