@@ -59,7 +59,7 @@ function formatMatrix(matrix) {
     return "[" + matrix + "]";
 }
 
-var buttonIdentity = ["a1", "a2", "a3", "a4","a5", "a6", "a7", "a8"];
+var buttonIdentity = ["b1", "b2", "b3", "b4","b5", "b6", "b7", "b8"];
 
 function reset(){
     const becp1 = document.getElementById("becp1");
@@ -105,6 +105,7 @@ var correctcodewordsarray = [];
 var wrongcodewordsarray = [];
 
 window.onload = function() {
+    console.log("windowloaded")
     wrongbuttons.forEach(function(wansbutton) {
         // Get the button element
         var buttonw = document.getElementById(wansbutton);
@@ -138,9 +139,9 @@ function nextpage() {
     becp1.style.display = "none";
     becp2.style.display = "block";
 
-    document.getElementById("codeword1").innerHTML = formatMatrix(correctcodewordsarray[0].toString());
-    document.getElementById("codeword2").innerHTML = formatMatrix(correctcodewordsarray[1].toString());
-    document.getElementById("codeword3").innerHTML = formatMatrix(correctcodewordsarray[2].toString());
+    document.getElementById("codewordb1").innerHTML = formatMatrix(correctcodewordsarray[0].toString());
+    document.getElementById("codewordb2").innerHTML = formatMatrix(correctcodewordsarray[1].toString());
+    document.getElementById("codewordb3").innerHTML = formatMatrix(correctcodewordsarray[2].toString());
 }
 
 function prevpage() {
