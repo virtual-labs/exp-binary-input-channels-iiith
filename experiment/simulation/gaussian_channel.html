@@ -54,7 +54,9 @@
     </script>
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!-- Load d3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
 
 </head>
 
@@ -128,7 +130,7 @@
     <div class="columns is-centered">
         <div class="column is-11-desktop is-12-tablet is-12-mobile">
             <div class="v-datalist-container components-list" id="questionStatement">
-                <p>Consider a AWGN channel with noise variance \(\dfrac{N_0}{2}=5\).</p>
+                <p id = "awgnTopQuestion">Consider a AWGN channel with noise variance \(\dfrac{N_0}{2}=5\).</p>
                 <div class="channelBlock">
 
                     <p id="sentCodeword"></p> &nbsp;
@@ -151,21 +153,36 @@
                     <!-- https://stackoverflow.com/questions/67447944/mathjax-inputs -->
                     <!-- \( \int_{\input[sub][1em]{0}}^{\input[sup][1em]{1}} \input[integrand][10em]{}\, dx \) -->
                     <!-- \( p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(\input[sub][1em])^2}{N_0}}, \forall x,y \in \mathbb{R}. \) -->
+                    
+                    <p> Choose the plot which best represents the distribution of \( Y \) given \( X \) i.e. \( p(y|x) \) : </p>
+
+
                     <div class="mathContainer">
-                        \( \displaystyle {p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi \input[N_0_first][2em]{}}}e^{\dfrac{-(
-                        \input[y_x][2em]{} )^2}{\input[N_0_second][2em]{}}}} \)
+                        \( \displaystyle {p(y|x)=\frac{1}{\sqrt{\pi \input[N_0_first][2em]{}}}e^{\dfrac{-(
+                        \input[y_x][3em]{} )^2}{\input[N_0_second][2em]{}}}} \)
                     </div>
 
                     <button class="v-button" role="button" onclick="checkProbabilityQuestion()">Check</button>
-                    <button class="v-button" role="button" onclick="nextProbabilityQuestion()">Next</button>
+                    <button id="nextButton" class="v-button" role="button" style="display:none ;" onclick="nextProbabilityQuestion()">Next</button>
 
                 </section>
 
 
                 <section id="distQuestion" style="display:none ;">
+                    Select the distribution of \( Y \) given \( X \) i.e. \( p(y|x) \) :
                     <br>
-                    Is the output of the channel a valid ? Click Yes or No.
                     <br>
+
+                    <div id="gaussianCurveOptions">
+                        <div id="gaussianCurveOptionA" class="gaussianCurveOption" onclick="selectGaussianCurve('A')"></div>
+                        <div id="gaussianCurveOptionB" class="gaussianCurveOption" onclick="selectGaussianCurve('B')"></div>
+                        <div id="gaussianCurveOptionC" class="gaussianCurveOption" onclick="selectGaussianCurve('C')"></div>
+                        <div id="gaussianCurveOptionD" class="gaussianCurveOption" onclick="selectGaussianCurve('D')"></div>
+                    </div>
+
+                    <button id="nextButtonDistQuestion" class="v-button" role="button" style="display:none ;" onclick="nextDistQuestion()">Next</button>
+
+                    <!-- <br>
                     <br>
                     <button class="v-button" onclick="yesValidGeneratorMatrix()" form="form1">Yes!</button>
                     <button class="v-button" onclick="notValidGeneratorMatrix()" form="form1">No!</button>
@@ -177,31 +194,19 @@
                             <label for="dimensionInput">Enter probability of above output given above input:</label>
                             <input type="number" id="dimensionInput" style="width: 2em;">
                         </div>
-                    </form>
+                    </form> -->
 
 
                 </section>
 
                 <section id="probabilityVectorQuestion" style="display:none ;">
-                    <form action="" method="get" id="rateForm" onsubmit="return false">
-                        What is the rate of the code?
-
-                        <br>
-
-                        Rate =
-                        <span class="stacked-fraction">
-                            <div class="numerator">
-                                <input type="number" id="dimensionInput" placeholder="dimension" style="width: 10em;">
-                                <!-- Adjust input width as needed -->
-                            </div>
-                            <div class="denominator"><input type="number" id="codelengthInput"
-                                    placeholder="length of codeword" style="width: 10em;"></div>
-                        </span>
-
-                    </form>
-                    <br>
-                    <button class="v-button" onclick="checkRate()" form="form2">Check</button>
-                    <button class="v-button" onclick="reset()">Reset</button>
+                        <div class="mathContainer">
+                            \( \displaystyle {p(\boldsymbol{y}|\boldsymbol{x})=\frac{1}{\sqrt{\pi \input[N_0_first_vect][2em]{}}}e^{\dfrac{-(
+                            \input[y_x_norm][2em]{} )^2}{\input[N_0_second_vect][2em]{}}}} \)
+                        </div>
+    
+                        <button class="v-button" role="button" onclick="checkProbabilityVectorQuestion()">Check</button>
+                        <!-- <button class="v-button" role="button" onclick="nextProbabilityQuestion()">Next</button> -->
                 </section>
 
             </div>
@@ -214,11 +219,11 @@
                     <!-- <div id="output"></div> -->
                     <span id="probabilityQuestionObservation">
                     </span>
-                    <br>
-                    <span id="dimensionEntered">
+                    <!-- <br> -->
+                    <span id="distQuestionObservation">
                     </span>
-                    <br>
-                    <span id="rateEntered">
+                    <!-- <br> -->
+                    <span id="probabilityVectorQuestionObservation">
                     </span>
                 </div>
             </div>
