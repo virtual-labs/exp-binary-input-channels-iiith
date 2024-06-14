@@ -59,11 +59,8 @@ function formatMatrix(matrix) {
 var buttonIds = ["a1", "a2", "a3", "a4","a5", "a6", "a7", "a8"];
 
 function reset(){
-    console.log("function called")
     const bscp1 = document.getElementById("bscp1");
     const bscp2 = document.getElementById("bscp2");
-    const f1 = document.getElementById("f1");
-    const f2 = document.getElementById("f2");
     const bscobs1 = document.getElementById("bscobs1");
     const bscobs2 = document.getElementById("bscobs2");
     const bscobs12 = document.getElementById("bscobs12");
@@ -125,11 +122,8 @@ window.onload = function() {
 };
 
 function nextpage() {
-    console.log("function called")
     const bscp1 = document.getElementById("bscp1");
     const bscp2 = document.getElementById("bscp2");
-    const f1 = document.getElementById("f1");
-    const f2 = document.getElementById("f2");
     const bscobs1 = document.getElementById("bscobs1");
     const bscobs2 = document.getElementById("bscobs2");
     const bscobs12 = document.getElementById("bscobs12");
@@ -147,11 +141,8 @@ function nextpage() {
 }
 
 function prevpage() {
-    console.log("function called")
     const bscp1 = document.getElementById("bscp1");
     const bscp2 = document.getElementById("bscp2");
-    const f1 = document.getElementById("f1");
-    const f2 = document.getElementById("f2");
     const bscobs1 = document.getElementById("bscobs1");
     const bscobs2 = document.getElementById("bscobs2");
     const bscobs12 = document.getElementById("bscobs12");
@@ -239,11 +230,6 @@ function check2(){
     var p31 = parseInt(document.getElementById("p31").value);
     var p32 = parseInt(document.getElementById("p32").value);
 
-    console.log(a11, p11)
-    console.log(a12, p12)
-
-    const bscobs2 = document.getElementById("bscobs2");
-
     if (isNaN(p11) || isNaN(p12) || isNaN(p21) || isNaN(p22) || isNaN(p31) || isNaN(p32) ||
         p11 < 0 || p11 > 9 || p12 < 0 || p12 > 9 || p21 < 0 || p21 > 9 ||
         p22 < 0 || p22 > 9 || p31 < 0 || p31 > 9 || p32 < 0 || p32 > 9) {
@@ -275,8 +261,8 @@ function check2(){
             break;
     
         default:
-            document.getElementById("obs1").innerHTML = "Incorrect Answer! <br> Please go through the Instructions, and try again.";
-            document.getElementById("obs1").style.color = "red";
+            document.getElementById("bscobs2").innerHTML = "Incorrect Answer! <br> Please go through the Instructions, and try again.";
+            document.getElementById("bscobs2").style.color = "red";
             break;
     }
 
