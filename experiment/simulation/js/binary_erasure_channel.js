@@ -17,6 +17,25 @@ const inputcodewords = [
     },{inputcodeword: [1, 1, 1, 1],}
 ];
 
+const correctanswercodewrords = [
+    {ccw: [0, eps , 0, eps],
+    },{ccw: [0, 0.64, 0, 1.23],
+    },{ccw: [0, 0, 1.24, 0],
+    },{ccw: [0, 0, 1, eps],
+    },{ccw: [0, 1, eps, 0],
+    },{ccw: [0, 1, 0.91, 1],
+    },{ccw: [eps, 1, 1, 0],
+    },{ccw: [0, 1, 1.98, 1],
+    },{ccw: [1, eps, 0, 0],
+    },{ccw: [1, 0, eps, 1],
+    },{ccw: [1, 0.09, 1, 0],
+    },{ccw: [1, 0, eps, 1],
+    },{ccw: [1, 1, 0.52, 0],
+    },{ccw: [1, eps, 0, 1],
+    },{ccw: [1, 1.73, 1, 0],
+    },{ccw: [1, 1, eps, 1],}
+];
+
 const eps = "\u03B5";
 
 const wrongcodeword = [
@@ -39,10 +58,9 @@ const wrongcodeword = [
 ];
 
 document.getElementById("epsilon").innerHTML = eps;
-document.getElementById("epsilon1").innerHTML = 1 - eps;
 
 var inpcodeword = Array.from(selectRandomInputCodeword().inputcodeword);
-document.getElementById("sentCodword").innerHTML = inpcodeword;
+document.getElementById("sentCodword").innerHTML = formatMatrix(inpcodeword);
 document.getElementById("newCodword").innerHTML = inpcodeword;
 
 

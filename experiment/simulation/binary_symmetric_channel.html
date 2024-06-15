@@ -77,7 +77,7 @@
                                 Select the output codewords accordingly and click on the <b>Submit</b> button.
                             </li>
                             <li>
-                                For the next question you must enter the probability of recieving each of the previously selected output codewords.
+                                For the next question you must enter the probability of receiving each of the previously selected output codewords.
                             </li>
                             <li>
                                 Once you have entered all the values, click on the <b>Submit</b> button.
@@ -103,9 +103,14 @@
         <div class="columns is-centered">
             <div class="column is-11-desktop is-12-tablet is-12-mobile">
                 <div class="v-datalist-container components-list">
-                    <p>A codeword needs to be sent through a Binary Symmetric Channel as shown below. What could be the possible outputs of the channel?</p>
-                    <br><br>
-                    <p> [ <p id="sentCodeword"></p> ]</p><p>&rarr;</p><img src="./images/bsc.png" alt="Binary Symmetric Channel" style="width:125px;height:125px;"><p>&rarr;</p><p>?</p> &nbsp;
+                <div>
+                    <p>A codeword needs to be sent through a Binary Symmetric Channel \( (BSC(p)) \) as shown below. Select the possible vectors that could be received through this channel.</p>
+                    <div class="box">
+                        <p> [<label id="sentCodeword"></label>] &rarr;</p>
+                        <IMG src="./images/bsc.png" alt="Binary Symmetric Channel" style="width:125px;height:125px;">
+                        <p>&rarr; ? </p>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -177,53 +182,56 @@
             </div>
         </section>
 
-                        <section id="bscp2" style="display:none ;">
-                            <div class="columns is-centered">
-                                <div class="column is-11-desktop is-12-tablet is-12-mobile">
-                                    <div class="v-datalist-container components-list">
-                                        <p>For the codeword [<p id="newCodeword"></p>] enter the probability of recieving each of the previously selected output codewords.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
-                                <div class="column is-8-desktop is-12-tablet is-12-mobile">
-                                    <div class="box-question">
-                                    <form action="" method="get" id="f2" onsubmit="return false">
-                                <br>
-                                <div>
-                                    <ol type="a">
-                                        <li>
-                                            <p>Enter the probability of recieving the codeword <label id = "codeword1"></label>.</p>
-                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p11" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p12" style="width: 2em;"></sup></p>
-                                        </li>
-                                        <li>
-                                            <p>Enter the probability of recieving the codeword <label id = "codeword2"></label>.</p>
-                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p21" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p22" style="width: 2em;"></sup></p>
-                                        </li>
-                                        <li>
-                                            <p>Enter the probability of recieving the codeword <label id = "codeword3"></label>.</p>
-                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p31" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p32" style="width: 2em;"></sup></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </form>
-                            <br>
-                            <button class="v-button" role="button" onclick="check2()">Submit</button>
-                            <button class="v-button" role="button" onClick= "reset()"> Reset </button>
-                            <button class="v-button" role="button" onclick = "prevpage()"> Previous </button>  
-                        </div>    
-                    </div>
-                </div>
-                <div class="column is-3-desktop is-4-tablet is-12-mobile">
+            <section id="bscp2" style="display:none ;">
+            <div class="columns is-centered">
+                <div class="column is-11-desktop is-12-tablet is-12-mobile">
                     <div class="v-datalist-container components-list">
-                        <div class="v-datalist-title">Observations</div>
-                        <div id="bscobs2">
-    
-                        </div>
+                        <p>For the input codeword \( \vec{x} =\) [<p id="newCodeword"></p>] enter the probability of receiving each of the previously selected output vectors on the \( (BSC(p)) \) channel.</p>
                     </div>
                 </div>
             </div>
-            </section>
+        <div class="flexbox">
+            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                    <div class="box-question">
+                    <form action="" method="get" id="f2" onsubmit="return false">
+                <br>
+                <div>
+                    <p style="margin-bottom: 50px;">Enter the probability of receiving each of the previously selected vectors.</p>
+                    <ol>
+                        <li>
+                            <p>Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codeword1"></label>.</p>
+                            <p>\( p(\vec{y}|\vec{x}) = \)<label>\(p\)<sup><input type="number" id="p11" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p12" style="width: 2em;"></sup></p>
+                        </li>
+                        <li>
+                            <p>Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codeword2"></label>.</p>
+                            <p>\( p(\vec{y}|\vec{x}) = \)<label>\(p\)<sup><input type="number" id="p21" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p22" style="width: 2em;"></sup></p>
+                        </li>
+                        <li>
+                            <p>Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codeword3"></label>.</p>
+                            <p>\( p(\vec{y}|\vec{x}) = \)<label> \(p\) <sup><input type="number" id="p31" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p32" style="width: 2em;"></sup></p>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            <br>
+            <button class="v-button" role="button" onclick="check2()">Submit</button>
+            <button class="v-button" role="button" onClick= "reset()"> Reset </button>
+            <button class="v-button" role="button" onclick = "prevpage()"> Previous </button>  
+        </div>    
+    </div>
+</div>
+<div class="column is-3-desktop is-4-tablet is-12-mobile">
+    <div class="v-datalist-container components-list">
+        <div class="v-datalist-title">Observations</div>
+        <div id="bscobs2">
+
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
 
     <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
     <script src="./js/binary_symmetric_channel.js"></script>

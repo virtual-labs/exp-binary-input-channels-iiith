@@ -47,4 +47,21 @@
     text-align: center;
 }
 
+.box {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+ }
+
+ .flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+ }
+ ol {
+    list-style-type: lower-latin;
+    margin: 0;
+    padding: 0;
+  }
 
