@@ -1,1 +1,3 @@
 ### Aim of the experiment
+
+This experiment will enable the user to understand the above aspects of these channels. The user is expected to know basics of probability distributions (such as Bernoulli, Binomial, and Gaussian distributions) and the notion of conditional probability, to execute this experiment. The user should ideally read the theory part of this experiment first, before attempting the questions. 

@@ -39,7 +39,7 @@
     },
     {
       "target": "index.html",
-      "source": "simulation/index.html",
+      "source": "simulation/binary_erasure_channel.html",
       "label": "Binary-Input Discrete Memoryless Channels",
       "unit-type": "task",
       "content-type": "simulation"

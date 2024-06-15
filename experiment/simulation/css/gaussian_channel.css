@@ -1,0 +1,40 @@
+.mathContainer{
+    padding: 2%;
+}
+
+#questionStatement {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: start;
+    justify-content: center;
+}
+
+.channelBlock {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#gaussianCurveOptions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    justify-items: center;
+}
+.gaussianCurveOption {
+    width: 75%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding-right: 25px;
+}
+
+/* hover for .gaussianCurveOption */
+.gaussianCurveOption:hover {
+    border: 2px solid #04AA6D;
+    cursor: pointer;
+}

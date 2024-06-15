@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+    <title>
+        Binary Symmetric Channel
+    </title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/binary_symmetric_channel.css">
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container" style="margin-top:1%;">
+
+        <div class="columns is-centered">
+            <div class="column is-one-quarter v-instruction-title">
+                Channel
+            </div>
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li id="Task1" onclick="window.location.href = 'binary_erasure_channel.html';">
+                            <a>
+                                Binary Erasure Channel
+                            </a>
+                        </li>
+
+                        <li class="is-active" id="Task2" >
+                            <a>
+                                Binary Symmetric Channel
+                            </a>
+                        </li>
+
+                        <li id="Task3" onclick="window.location.href = 'gaussian_channel.html';">
+                            <a>
+                                Gaussian Channel
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <ul style="list-style: disc;">
+                            <b>Quick theory overview:</b>
+                            <li> In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
+                            </li>
+                        </ul>
+                        <br>
+                        <ul style="list-style: disc;">
+
+                            <b>Procedure:</b>
+
+                            <li>
+                                Given a codeword, identify what are the possible outputs of the Binary Symmetric Channel.
+                            </li>
+
+                            <li>
+                                Select the output codewords accordingly and click on the <b>Submit</b> button.
+                            </li>
+                            <li>
+                                For the next question you must enter the probability of recieving each of the previously selected output codewords.
+                            </li>
+                            <li>
+                                Once you have entered all the values, click on the <b>Submit</b> button.
+                            </li>
+                            <li>
+                                Click on the <b>Reset</b> button to reset all your selected choices and restart the exercise.
+                            </li>
+                            <li>
+                                Click on the <b>Next</b> button to go to next exercise.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    
+    
+    <section id="bscp1" style="display:block ;">
+        <div class="columns is-centered">
+            <div class="column is-11-desktop is-12-tablet is-12-mobile">
+                <div class="v-datalist-container components-list">
+                    <p>A codeword needs to be sent through a Binary Symmetric Channel as shown below. What could be the possible outputs of the channel?</p>
+                    <br><br>
+                    <p> [ <p id="sentCodeword"></p> ]</p><p>&rarr;</p><img src="./images/bsc.png" alt="Binary Symmetric Channel" style="width:125px;height:125px;"><p>&rarr;</p><p>?</p> &nbsp;
+                </div>
+            </div>
+        </div>
+
+            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
+                style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                    <div class="box-question">
+                        
+                        
+                            <form action="" method="get" id="f1" onsubmit="return false">
+                            <table align="center">
+                                <tr>
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a1" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a2" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a3" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a4" onClick="change(id)"></button>
+                                    </div></td>
+                                </tr>
+        
+                                <tr>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a5" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a6" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a7" onClick="change(id)"></button>
+                                    </div></td>
+        
+                                    <td style="padding: 15px;"><div class="code-word">
+                                        <button class="button-2" id="a8" onClick="change(id)"></button>
+                                    </div></td>
+                                </tr>
+                            </table>
+                            </form>
+                            <br>
+                            <button class="v-button" role="button" onClick= "check1()"> Submit </button>
+					        <button class="v-button" role="button" onClick= "reset()"> Reset </button>
+					        <button class="v-button" role="button" onclick = "nextpage()"> Next </button>
+                        </div>    
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-4-tablet is-12-mobile">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="bscobs1">
+    
+                        </div>
+                        <div id="bscobs12">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                        <section id="bscp2" style="display:none ;">
+                            <div class="columns is-centered">
+                                <div class="column is-11-desktop is-12-tablet is-12-mobile">
+                                    <div class="v-datalist-container components-list">
+                                        <p>For the codeword [<p id="newCodeword"></p>] enter the probability of recieving each of the previously selected output codewords.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                                <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                                    <div class="box-question">
+                                    <form action="" method="get" id="f2" onsubmit="return false">
+                                <br>
+                                <div>
+                                    <ol type="a">
+                                        <li>
+                                            <p>Enter the probability of recieving the codeword <label id = "codeword1"></label>.</p>
+                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p11" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p12" style="width: 2em;"></sup></p>
+                                        </li>
+                                        <li>
+                                            <p>Enter the probability of recieving the codeword <label id = "codeword2"></label>.</p>
+                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p21" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p22" style="width: 2em;"></sup></p>
+                                        </li>
+                                        <li>
+                                            <p>Enter the probability of recieving the codeword <label id = "codeword3"></label>.</p>
+                                            <p>\( p(y|x) = \)<label> p<sup><input type="number" id="p31" style="width: 2em;"></sup></label>(1-p)<sup><input type="number" id="p32" style="width: 2em;"></sup></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                            <br>
+                            <button class="v-button" role="button" onclick="check2()">Submit</button>
+                            <button class="v-button" role="button" onClick= "reset()"> Reset </button>
+                            <button class="v-button" role="button" onclick = "prevpage()"> Previous </button>  
+                        </div>    
+                    </div>
+                </div>
+                <div class="column is-3-desktop is-4-tablet is-12-mobile">
+                    <div class="v-datalist-container components-list">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="bscobs2">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="./js/binary_symmetric_channel.js"></script>
+</body>
+
+</html>
