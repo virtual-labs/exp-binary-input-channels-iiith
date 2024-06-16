@@ -62,7 +62,11 @@
                     <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
                         <ul style="list-style: disc;">
                             <b>Quick theory overview:</b>
-                            <li> In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
+                            <li>
+                                <p>For the \( BEC(\epsilon) \) memoryless channel, the transition probability is given by:</p>
+                                <p style="text-align: center;">
+                                    \( p(\vec{y}|\vec{x}) = \begin{cases} \epsilon^{w_e(y)}(1-\epsilon)^{n-w_e(y)} & \text{if} \ \vec{x} \ \text{and} \ \vec{y} \ \text{are compatible} \\ 0 & \text{otherwise} \end{cases}\)
+                                </p>
                             </li>
                         </ul>
                         <br>
@@ -104,116 +108,20 @@
         <div class="columns is-centered">
             <div class="column is-11-desktop is-12-tablet is-12-mobile">
                 <div class="v-datalist-container components-list">
-                    <p>A codeword needs to be sent through a Binary Erasure Channel as shown below. What could be the possible outputs of the channel?</p>
-                    <p id="sentCodword"></p> &nbsp;
-                <canvas id="becCanvas" width="300" height="150"></canvas>
-
-                <script>
-                    var canvas = document.getElementById("becCanvas");
-                    var ctx = canvas.getContext("2d");
-            
-                    // Box variables
-                    var boxX = 100; // X-coordinate of top-left corner of box
-                    var boxY = 25; // Y-coordinate of top-left corner of box
-                    var boxWidth = 100;
-                    var boxHeight = 100;
-            
-                    // Input arrow variables
-                    var inputStartX = 0;
-                    var inputStartY = 75;
-                    var inputEndX = boxX;
-                    var inputEndY = 75;
-                    var inputShift = 15; // Shift for arrowhead position
-            
-                    // Output arrow variables
-                    var outputStartX = boxX + boxWidth;
-                    var outputStartY = 75;
-                    var outputEndX = canvas.width;
-                    var outputEndY = 75;
-                    var outputShift = 15; // Shift for arrowhead position
-            
-                    // Draw the box
-                    ctx.fillStyle = "lightblue";
-                    ctx.fillRect(boxX, boxY, boxWidth, boxHeight);
-
-                    // Draw BEC channel
-                    var paddingBEC = 15;
-                    ctx.beginPath();
-                    // bottom parallel line
-                    // console.log(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-                    ctx.moveTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + boxHeight - paddingBEC);
-
-                    // top parallel line
-                    ctx.moveTo(boxX + paddingBEC, boxY + paddingBEC);
-                    ctx.lineTo(boxX + boxWidth - paddingBEC, boxY + paddingBEC);
-
-                    // slanted lines 
-                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
-                    ctx.lineTo(boxX + paddingBEC, boxY + paddingBEC);
-
-                    ctx.moveTo(boxX + boxWidth - paddingBEC, boxY + boxHeight/2);
-                    ctx.lineTo(boxX + paddingBEC, boxY + boxHeight - paddingBEC);
-
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-
-                    ctx.closePath();
-                    
-
-                    // Draw input arrow
-                    ctx.beginPath();
-                    ctx.moveTo(inputStartX, inputStartY);
-                    ctx.lineTo(inputEndX, inputEndY);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    ctx.beginPath();
-                    ctx.moveTo(inputEndX - inputShift, inputEndY - 5);
-                    ctx.lineTo(inputEndX, inputEndY);
-                    ctx.lineTo(inputEndX - inputShift, inputEndY + 5);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    // Draw output arrow
-                    ctx.beginPath();
-                    ctx.moveTo(outputStartX, outputStartY);
-                    ctx.lineTo(outputEndX, outputEndY);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    ctx.beginPath();
-                    ctx.moveTo(outputEndX - outputShift, outputEndY - 5);
-                    ctx.lineTo(outputEndX, outputEndY);
-                    ctx.lineTo(outputEndX - outputShift, outputEndY + 5);
-                    ctx.strokeStyle = "black";
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-                    ctx.closePath();
-            
-                    // Text for input and output (optional)
-                    // ctx.font = "18px Arial";
-                    // ctx.fillStyle = "red";
-                    // ctx.fillText("Input", 0, inputStartY);
-            
-                    // ctx.fillStyle = "green";
-                    // ctx.fillText("Output", canvas.width - 60, outputStartY);
-                </script>
-
-                &nbsp; <p>?</p>
+                    <div>
+                        <p>A codeword needs to be sent through a Binary Symmetric Channel \( (BEC(\epsilon)) \) as shown below. Select the possible vectors that could be received through this channel.</p>
+                        <div class="box">
+                            <p> \( \vec{x} =\) [<label id="sentCodword"></label>] &rarr;</p>
+                            <IMG src="./images/bec.png" alt="Binary Erasure Channel" style="width:125px;height:125px;">
+                            <p>&rarr; ? \( = \vec{y} \) </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
             <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start"
-                style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                style="margin-top:-1.5%;">
                 <div class="column is-8-desktop is-12-tablet is-12-mobile">
                     <div class="box-question">
                         
@@ -222,38 +130,38 @@
                             <table align="center">
                                 <tr>
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b1" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b1" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b2" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b2" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b3" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b3" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b4" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b4" onClick="change(id)"></button>
                                     </div></td>
                                 </tr>
         
                                 <tr>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b5" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b5" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b6" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b6" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b7" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b7" onClick="change(id)"></button>
                                     </div></td>
         
                                     <td style="padding: 15px;"><div class="code-word">
-                                        <button class="button-2" id="b8" onClick="change(id)"></button>
+                                        <button class="button-2 buttonstyle" id="b8" onClick="change(id)"></button>
                                     </div></td>
                                 </tr>
                             </table>
@@ -264,7 +172,6 @@
 					        <button class="v-button" role="button" onclick = "nextpage()"> Next </button>
                         </div>    
                     </div>
-                </div>
                 <div class="column is-3-desktop is-4-tablet is-12-mobile">
                     <div class="v-datalist-container components-list">
                         <div class="v-datalist-title">Observations</div>
@@ -277,36 +184,38 @@
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
             <section id="becp2" style="display:none ;">
                 <div class="columns is-centered">
                     <div class="column is-11-desktop is-12-tablet is-12-mobile">
                         <div class="v-datalist-container components-list">
-                            <p>For the codeword [<p id="newCodword"></p>] enter the probability of recieving each of the previously selected output codewords.</p>
+                            <p>For the input codeword \( \vec{x} =\) [<p id="newCodword"></p>] enter the probability of receiving each of the previously selected output vectors on the &nbsp; \(  BEC(\epsilon)  \) &nbsp; channel.</p>
                         </div>
                     </div>
                 </div>
-                <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%; width: 100%; max-width: 1200px;">
+                <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%;">
                     <div class="column is-8-desktop is-12-tablet is-12-mobile">
                         <div class="box-question">
                         <form action="" method="get" id="fb2" onsubmit="return false">
                     <br>
                     <div>
-                        <ol type="a">
-                            <li>
-                                <p>Enter the probability of recieving the codeword <label id = "codewordb1"></label>.</p>
-                                <p>\( p(y|x) = \)<label><p id="epsilon"></p><sup><input type="number" id="p11" style="width: 2em;"></sup></label><p id="epsilon"><sup><input type="number" id="p12" style="width: 2em;"></sup></p></p>
-                            </li>
-                            <li>
-                                <p>Enter the probability of recieving the codeword <label id = "codewordb2"></label>.</p>
-                                <p>\( p(y|x) = \)<label><p id="epsilon"></p><sup><input type="number" id="p21" style="width: 2em;"></sup></label><p id="epsilon"><sup><input type="number" id="p22" style="width: 2em;"></sup></p></p>
-                            </li>
-                            <li>
-                                <p>Enter the probability of recieving the codeword <label id = "codewordb3"></label>.</p>
-                                <p>\( p(y|x) = \)<label><p id="epsilon"></p><sup><input type="number" id="p31" style="width: 2em;"></sup></label><p id="epsilon"><sup><input type="number" id="p32" style="width: 2em;"></sup></p></p>
-                            </li>
-                        </ul>
+                        <p style="margin-bottom: 50px;">Enter the probability of receiving each of the previously selected vectors.</p>
+                    <ul>
+                        <li>
+                            <span> (a) Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codewordb1"></label>.</span>
+                        </li>
+                        <p>\( p(\vec{y}|\vec{x}) = \)<label>\( \epsilon \)<sup><input type="number" id="q11" style="width: 2em;"></sup></label>\( (1- \epsilon ) \)<sup><input type="number" id="q12" style="width: 2em;"></sup></p>
+                        <li>
+                            <span> (b) Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codewordb2"></label>.</span>
+                        </li>
+                        <p>\( p(\vec{y}|\vec{x}) = \)<label>\( \epsilon \)<sup><input type="number" id="q21" style="width: 2em;"></sup></label>\( (1- \epsilon ) \)<sup><input type="number" id="q22" style="width: 2em;"></sup></p>
+                        <li>
+                            <span> (b) Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codewordb3"></label>.</span>
+                        </li>
+                        <p>\( p(\vec{y}|\vec{x}) = \)<label> \( \epsilon \) <sup><input type="number" id="q31" style="width: 2em;"></sup></label>\( (1- \epsilon ) \)<sup><input type="number" id="q32" style="width: 2em;"></sup></p>
+                    </ul>
                     </div>
                 </form>
                 <br>
@@ -315,7 +224,6 @@
                 <button class="v-button" role="button" onclick = "prevpage()"> Previous </button>  
             </div>    
         </div>
-    </div>
     <div class="column is-3-desktop is-4-tablet is-12-mobile">
         <div class="v-datalist-container components-list">
             <div class="v-datalist-title">Observations</div>
@@ -324,6 +232,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </section>
  

@@ -47,21 +47,26 @@
     text-align: center;
 }
 
+.buttonstyle {
+    border: 2px solid black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: solid;
+    display: inline-block;
+    font-size: 12px;
+    width: 200px;
+}
+
 .box {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
- }
-
- .flexbox {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
- }
+}
+  
  ol {
     list-style-type: lower-latin;
-    margin: 0;
-    padding: 0;
+    margin-left: 200px;
+    width: auto;
+    text-indent: 0%;
   }
 
