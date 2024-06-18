@@ -295,17 +295,17 @@ function checkb2(){
             break;
 
         case (a11 !== q11 || a12 !== q12):
-            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures in the output vector for part (a) again.";
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (a) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
 
         case (a21 !== q21 || a22 !== q22):
-            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures in the output vector for part (b) again.";
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (b) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
     
         case (a31 !== q31 || a32 !== q32):
-            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures in the output vector for part (c) again.";
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (c) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
     
