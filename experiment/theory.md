@@ -19,11 +19,25 @@ The problem of designing good communication systems arises precisely due to the 
 
 1. The **Binary Erasure Channel**: The noise in this channel is modelled as a *bit-erasure*, which denotes the transmitted bit was erased or lost. Formally, in this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits along with the erasure symbol $?$, i.e., ${\cal Y}=\{0,1,?\}$. The erasure symbol $?$ denotes that the input symbol was *erased* during the process of transmission through the channel. The binary erasure channel, denoted formally as $BEC(\epsilon)$, has the property that the bit that is transmitted is erased with probability $\epsilon$. Here, $\epsilon$ denotes the *erasure probability*, and we assume $\epsilon$ is a real number between $0$ and $1$, i.e., $\epsilon\in(0,1)$. 
 
+<div style="text-align: center;">
+    <img src="images/bec.png" alt="Binary Erasure Channel" width="20%"/>
+    <p style="text-align: center;"><b>Binary Erasure Channel</b></p>
+</div>
+
 2. The **Binary Symmetric Channel**: In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
+
+<div style="text-align: center;">
+    <img src="images/bsc.png" alt="Binary Symmetric Channel" width="20%"/>
+    <p style="text-align: center;"><b>Binary Symmetric Channel</b></p>
+</div>
 
 3. The **Additive White Gaussian Noise Channel (AWGN)**: The AWGN channel, accepts a real number as an input, and adds to it a noise random variable $Z$ that is distributed independently according to a Gaussian distribution ${\cal N}(0,N_0/2)$, with zero-mean and variance $N_0/2$. Thus, the input alphabet and the output alphabet are both ${\cal X}=\mathbb{R}$. The relationship between the input $X$ and the output $Y$ is then given as 
 
 $$Y=X+Z.$$ 
+
+<div style="text-align: center;">
+    <img src="images/gaussian_channel.png" alt="Gaussian Channel" width="20%"/>
+</div>
 
 ## Conditional Distribution Associated with the Communication Channel
 

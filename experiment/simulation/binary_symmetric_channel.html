@@ -166,7 +166,7 @@
                             <br>
                             <button class="v-button" role="button" onClick= "check1()"> Submit </button>
 					        <button class="v-button" role="button" onClick= "reset()"> Reset </button>
-					        <button class="v-button" role="button" onclick = "nextpage()"> Next </button>
+					        <button class="v-button" id = "nextpagebutton" role="button" style="display:none ;" onclick = "nextpage()"> Next </button>
                         </div>    
                     </div>
                 <div class="column is-3-desktop is-4-tablet is-12-mobile">
@@ -209,7 +209,7 @@
                         </li>
                         <p>\( p(\vec{y}|\vec{x}) = \)<label>\(p\)<sup><input type="number" id="p21" style="width: 2em;"></sup></label>\( (1-p) \)<sup><input type="number" id="p22" style="width: 2em;"></sup></p>
                         <li>
-                            <span> (b) Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codeword3"></label>.</span>
+                            <span> (c) Enter the probability of receiving the vector \( \vec{y} =\) <label id = "codeword3"></label>.</span>
                         </li>
                         <p>\( p(\vec{y}|\vec{x}) = \)<label> \(p\) <sup><input type="number" id="p31" style="width: 2em;"></sup></label>\( (1-p) \)<sup><input type="number" id="p32" style="width: 2em;"></sup></p>
                     </ul>

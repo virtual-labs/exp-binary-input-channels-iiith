@@ -68,6 +68,8 @@ function reset(){
 
     bscp1.style.display = "block";
     bscp2.style.display = "none";
+    document.getElementById("nextpagebutton").style.display = "none";
+    
 
     buttonIds.forEach(function(buttonId) {
         // Get the button element
@@ -82,6 +84,17 @@ function reset(){
     var wansbuttons = [];
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+shuffleArray(codewords);
+shuffleArray(wrongans);
 
 
 const arrsplice = buttonIds.slice();
@@ -99,22 +112,32 @@ var corrcw = [];
 var wroncw = [];
 
 window.onload = function() {
+    var i = 0;
+    var j = 0;
     wansbuttons.forEach(function(wansbutton) {
-        // Get the button element
+        
+        
         var buttonw = document.getElementById(wansbutton);
-        randw = Array.from(selectRandomWans().wans);
+        randw = wrongans[i].wans;
         wroncw.push(randw)
+        
         // Set the random number as the button's text
         buttonw.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(randw) + '</span>';
+        i = i + 1;
+        console.log(randw);
     });
 
     codebuttons.forEach(function(codebutton) {
         // Get the button element
+        
         var button = document.getElementById(codebutton);
-        rand = Array.from(selectRandomCodeword().codeword);
+        rand = codewords[j].codeword;
         corrcw.push(rand)
+        
         // Set the random number as the button's text
         button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+        j = j + 1;
+        console.log(rand);
     });
 };
 
@@ -188,6 +211,7 @@ function check1() {
             bscobs1.innerHTML = '{' + "[" + corrcw[0] + "];" + "[" +  corrcw[1] + "];" + "[" +  corrcw[2] + ']}';
             bscobs12.innerHTML = "<b>Correct! The above selected output vectors are indeed the right possible outputs for the given codeword.</b>";
             bscobs1.style.color = "green";
+            document.getElementById("nextpagebutton").style.display = "initial";
         } else {
             bscobs1.innerHTML = "<b>Kindly check as to what the correct output vectors could be by going through the theory.</b>";
             bscobs1.style.color = "red";

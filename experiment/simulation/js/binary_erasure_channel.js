@@ -104,6 +104,7 @@ function reset(){
 
     becp1.style.display = "block";
     becp2.style.display = "none";
+    document.getElementById("nextpagebuttonb").style.display = "none";
 
     buttonIdentity.forEach(function(buttonId) {
         // Get the button element
@@ -118,7 +119,19 @@ function reset(){
     var wrongbuttons = [];
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
+shuffleArray(correctanswercodewrords0);
+shuffleArray(correctanswercodewrords1);
+shuffleArray(correctanswercodewrords2);
+shuffleArray(wrongcodeword);
 
 const arrslice = buttonIdentity.slice();
 
@@ -135,13 +148,17 @@ var correctcodewordsarray = [];
 var wrongcodewordsarray = [];
 
 window.onload = function() {
+    var i = 0;
+    var j = 0;
+
     wrongbuttons.forEach(function(wansbutton) {
         // Get the button element
         var buttonw = document.getElementById(wansbutton);
-        randw = Array.from(selectRandomWrongCodeword().wcw);
+        randw = wrongcodeword[i].wcw;
         wrongcodewordsarray.push(randw)
         // Set the random number as the button's text
         buttonw.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(randw) + '</span>';
+        i = i + 1;
     });
 
     correctbuttons.forEach(function(codebutton) {
@@ -149,21 +166,24 @@ window.onload = function() {
         var button = document.getElementById(codebutton);
 
         if(JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[0].inputcodeword)){
-            rand = Array.from(selectRandomCorrectCodeword0().ccw0);
+            rand = correctanswercodewrords0[j].ccw0;
             correctcodewordsarray.push(rand)
             button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
         }
 
         if (JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[1].inputcodeword)){
-            rand = Array.from(selectRandomCorrectCodeword1().ccw1);
+            rand = correctanswercodewrords1[j].ccw1;
             correctcodewordsarray.push(rand)
             button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
         }
 
         if (JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[2].inputcodeword)){
-            rand = Array.from(selectRandomCorrectCodeword2().ccw2);
+            rand = correctanswercodewrords2[j].ccw2;
             correctcodewordsarray.push(rand)
             button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
         }
     });
 };
@@ -238,6 +258,7 @@ function checkb1() {
             becobs1.innerHTML = '{' + "[" + correctcodewordsarray[0] + "];" + "[" +  correctcodewordsarray[1] + "];" + "[" +  correctcodewordsarray[2] + ']}';
             becobs12.innerHTML = "<b>Correct! The above selected output vectors are indeed the right possible outputs for the given codeword.</b>";
             becobs1.style.color = "green";
+            document.getElementById("nextpagebuttonb").style.display = "initial";
         } else {
             becobs1.innerHTML = "<b>Kindly check as to what the correct output vectors could be by going through the theory.</b>";
             becobs1.style.color = "red";
