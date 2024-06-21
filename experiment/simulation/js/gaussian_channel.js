@@ -88,9 +88,11 @@ function checkProbabilityQuestion() {
     // });
 
     if (N_0_first / 2 == noiseVariance && N_0_second / 2 == noiseVariance && y_x == Math.abs(noise)) {
-        probabilityQuestionObservation.innerHTML = "<b>Correct Answer!!!</b>";
+        probabilityQuestionObservation.innerHTML = `<b>Great job! The correct answer is \\( \\displaystyle {p(y|x)=\\frac{1}{\\sqrt{\\pi ${2*noiseVariance}}}e^{\\dfrac{-(${Math.abs(noise).toFixed(2)})^2}{${2*noiseVariance}}}} \\) </b>`;
         probabilityQuestionObservation.style.color = "green";
         document.getElementById("nextButton").style.display = "initial";
+        // compile MathJax
+        MathJax.typeset();
         // nextProbabilityQuestion()
     }
     else if ((N_0_first / 2 != noiseVariance || N_0_second / 2 != noiseVariance) && y_x == Math.abs(noise)) {
@@ -128,7 +130,7 @@ function nextProbabilityQuestion() {
     sentX = (Math.floor(Math.random() * 10 - 5));
     noiseVariance = (Math.floor(Math.random() * 5 + 1));
 
-    awgnTopQuestion.innerHTML = "Consider a AWGN channel with noise variance \\(\\dfrac{N_0}{2}=" + ((noiseVariance/2).toFixed(2)) + "\\).";
+    awgnTopQuestion.innerHTML = "Consider a AWGN channel with noise variance \\(\\dfrac{N_0}{2}=" + ((noiseVariance).toFixed(2)) + "\\).";
 
     document.getElementById("sentCodeword").innerHTML = sentX.toString();
     document.getElementById("receivedCodeword").innerHTML = 'Y';
@@ -160,7 +162,7 @@ function nextDistQuestion() {
     // probabilityVectorQuestion.style.display = "block";
 
     sentX = randomRandomCodeword.codeword;
-    document.getElementById("sentCodeword").innerHTML = formatMatrix(sentX);
+    document.getElementById("sentCodeword").innerHTML = "\\(\\boldsymbol{X}=\\)" + formatMatrix(sentX);
 
     // create a noise vector
     noise = [];
@@ -173,7 +175,7 @@ function nextDistQuestion() {
         return (bit + noise[index]).toFixed(2);
     });
 
-    document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedY);
+    document.getElementById("receivedCodeword").innerHTML = "\\(\\boldsymbol{Y}=\\)" + formatMatrix(receivedY);
     // compile MathJax
     MathJax.typeset();
 
@@ -202,19 +204,26 @@ function checkProbabilityVectorQuestion() {
     // for y_x_norm, accept 0.1 difference
 
     if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Correct Answer!!!</b>";
+        probabilityVectorQuestionObservation.innerHTML = `<b>Great job! The correct answer is \\( \\displaystyle {p(\\boldsymbol{y}|\\boldsymbol{x})=\\frac{1}{\\sqrt{\\pi^4 ${N_0_first_answer}}}e^{\\dfrac{-(${y_x_norm_answer.toFixed(2)})^2}{${N_0_second_answer}}}} \\) </b>`;
         probabilityVectorQuestionObservation.style.color = "green";
-        document.getElementById("nextButtonVector").style.display = "initial";
-    } else if (N_0_first != N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
+        MathJax.typeset();
+
+    } else if (N_0_first != N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
+    } else if (N_0_first == N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
+        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance inside the exponent.</b>";
+        probabilityVectorQuestionObservation.style.color = "red";
     } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the exponent again.</b>";
+        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the numerator of the exponent.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     } else {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. </b>";
+        probabilityVectorQuestionObservation.innerHTML = "<b>All the values are incorrect. Please try again.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     }
+
+     // compile MathJax
+     MathJax.typeset();
 
 
 }
