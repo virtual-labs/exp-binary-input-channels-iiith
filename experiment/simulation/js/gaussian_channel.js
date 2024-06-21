@@ -23,8 +23,8 @@ var receivedY = sentX + noise  // send 0 or 1
 // var dim = randomGeneratorMatrix.dim;
 // var codelength = randomGeneratorMatrix.matrix[0].length;
 
-document.getElementById("sentCodeword").innerHTML = sentX.toString();
-document.getElementById("receivedCodeword").innerHTML = (receivedY.toFixed(2)).toString();
+document.getElementById("sentCodeword").innerHTML = 'X=' + sentX.toString();
+document.getElementById("receivedCodeword").innerHTML = 'Y=' + (receivedY.toFixed(2)).toString();
 // document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedCodeword);
 // }
 // document.getElementById("sentCodword").innerHTML = formatMatrix(randomRandomCodeword.codeword);
@@ -98,11 +98,11 @@ function checkProbabilityQuestion() {
         probabilityQuestionObservation.style.color = "red";
     }
     else if ((N_0_first / 2 == noiseVariance && N_0_second / 2 == noiseVariance) && y_x != Math.abs(noise)) {
-        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check answer again.</b>";
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check the exponent again.</b>";
         probabilityQuestionObservation.style.color = "red";
     }
     else {
-        probabilityQuestionObservation.innerHTML = "<b>Incorrect. </b>";
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please try again.</b>";
         probabilityQuestionObservation.style.color = "red";
     }
 
@@ -209,7 +209,7 @@ function checkProbabilityVectorQuestion() {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check answer again.</b>";
+        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the exponent again.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     } else {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. </b>";
