@@ -11,7 +11,7 @@ The detailed working of this experiment is as follows.
 ## Overview of the Experiment window
 
 <div style="text-align: center;">
-    <img src="images/exp_window" alt="Experiment Window" width="75%"/>
+    <img src="images/exp_window.png" alt="Experiment Window" width="75%"/>
 </div>
 
 The experiment window consists of the following components:
@@ -36,9 +36,11 @@ There are three tasks in this sub-experiment.
     <li> Click on <strong>Next</strong> to go to the next sub-experiment.  </li>
     <li> The observation box will display feedback messages accordingly. </li> <br>
     </ul>
+    <div style="text-align: center;">
     <img src="images/becobs11.png" alt="alt text" width="25%"/> 
     <img src="images/becobs12.png" alt="alt text" width="25%"/>
     <img src="images/becobs13.png" alt="alt text" width="25%"/>
+    </div>
 
 2. **Enter Probability**: For the input vector $\vec{x}$, enter the probability of receiving the previously selected output vectors $\vec{y}$.
     <div style="text-align: center;"> <img src="images/becexp_2.png" alt="alt text" width="75%"/> </div>
@@ -49,11 +51,13 @@ There are three tasks in this sub-experiment.
     <li> Click on <strong>Previous</strong> to go to the previous sub-experiment.  </li>
     <li> The observation box will display feedback messages accordingly. </li> <br>
     </ul>
+    <div style="text-align: center;">
     <img src="images/becobs21.png" alt="alt text" width="25%"/> 
     <img src="images/becobs22.png" alt="alt text" width="25%"/>
     <img src="images/becobs23.png" alt="alt text" width="25%"/>
     <img src="images/becobs24.png" alt="alt text" width="25%"/>
     <img src="images/becobs25.png" alt="alt text" width="25%"/>
+    </div>
 
 ### Task 2: Binary Symmetric Channel
 
@@ -66,9 +70,11 @@ There are three tasks in this sub-experiment.
     <li> Click on <strong>Next</strong> to go to the next sub-experiment.  </li>
     <li> The observation box will display feedback messages accordingly. </li> <br>
     </ul>
-    <img src="images/bscobs11.png" alt="alt text" width="25%"/> 
-    <img src="images/bscobs12.png" alt="alt text" width="25%"/>
+    <div style="text-align: center;">
+    <img src="images/becobs11.png" alt="alt text" width="25%"/> 
+    <img src="images/becobs12.png" alt="alt text" width="25%"/>
     <img src="images/bscobs13.png" alt="alt text" width="25%"/>
+    </div>
 
 2. **Enter Probability**: For the input vector $\vec{x}$, enter the probability of receiving the previously selected output vectors $\vec{y}$.
     <div style="text-align: center;"> <img src="images/bscexp_2.png" alt="alt text" width="75%"/> </div>
@@ -79,8 +85,10 @@ There are three tasks in this sub-experiment.
     <li> Click on <strong>Previous</strong> to go to the previous sub-experiment.  </li>
     <li> The observation box will display feedback messages accordingly. </li> <br>
     </ul>
-    <img src="images/bscobs21.png" alt="alt text" width="25%"/> 
-    <img src="images/bscobs22.png" alt="alt text" width="25%"/>
-    <img src="images/bscobs23.png" alt="alt text" width="25%"/>
-    <img src="images/bscobs24.png" alt="alt text" width="25%"/>
-    <img src="images/bscobs25.png" alt="alt text" width="25%"/>
+    <div style="text-align: center;">
+    <img src="images/becobs21.png" alt="alt text" width="25%"/> 
+    <img src="images/becobs22.png" alt="alt text" width="25%"/>
+    <img src="images/becobs23.png" alt="alt text" width="25%"/>
+    <img src="images/becobs24.png" alt="alt text" width="25%"/>
+    <img src="images/becobs25.png" alt="alt text" width="25%"/>
+    </div>

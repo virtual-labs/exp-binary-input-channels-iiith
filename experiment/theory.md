@@ -36,7 +36,7 @@ The problem of designing good communication systems arises precisely due to the 
 $$Y=X+Z.$$ 
 
 <div style="text-align: center;">
-    <img src="images/gaussian_channel.png" alt="Gaussian Channel" width="20%"/>
+    <img src="images/gaussian_channel.svg" alt="Gaussian Channel" width="20%"/>
 </div>
 
 ## Conditional Distribution Associated with the Communication Channel
