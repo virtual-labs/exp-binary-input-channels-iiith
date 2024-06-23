@@ -187,13 +187,14 @@ function nextDistQuestion() {
 
 
 function checkProbabilityVectorQuestion() {
+    const errorEpsilon = 0.1;
     const probabilityVectorQuestion = document.getElementById("probabilityVectorQuestion");
     const probabilityVectorQuestionObservation = document.getElementById("probabilityVectorQuestionObservation");
     const distQuestion = document.getElementById("distQuestion");
 
     let N_0_first = parseFloat(document.querySelectorAll('.mathContainer #N_0_first_vect')[0].value);
     let N_0_second = parseFloat(document.querySelectorAll('.mathContainer #N_0_second_vect')[0].value);
-    let y_x_norm = Math.abs(parseFloat(document.querySelectorAll('.mathContainer #y_x_norm')[0].value));
+    let y_x_norm = parseFloat(document.querySelectorAll('.mathContainer #y_x_norm')[0].value);
 
     let N_0_first_answer = Math.pow(2*noiseVariance, sentX.length);
     let N_0_second_answer = 2*noiseVariance;
@@ -201,20 +202,25 @@ function checkProbabilityVectorQuestion() {
         return acc + Math.pow(noise[index], 2);
     }, 0));
 
+    let y_x_norm_answer_latex = `\\sqrt{${sentX.map((bit, index) => { return `(${receivedY[index]}-${sentX[index]})^2` }).join('+')}}`;
+
     // for y_x_norm, accept 0.1 difference
 
-    if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = `<b>Great job! The correct answer is \\( \\displaystyle {p(\\boldsymbol{y}|\\boldsymbol{x})=\\frac{1}{\\sqrt{\\pi^4 ${N_0_first_answer}}}e^{\\dfrac{-(${y_x_norm_answer.toFixed(2)})^2}{${N_0_second_answer}}}} \\) </b>`;
+    if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
+        probabilityVectorQuestionObservation.innerHTML = `<b>Acceptable answer! This exercise accepts the answer \\( \\displaystyle {p(\\boldsymbol{y}|\\boldsymbol{x})=\\frac{1}{\\sqrt{\\pi^4 ${N_0_first_answer}}}e^{\\dfrac{-a^2}{${N_0_second_answer}}}} \\) where \\(\\scriptsize{a = ${y_x_norm_answer_latex}}\\) and \\( a \\in [${(y_x_norm_answer-errorEpsilon).toFixed(2)}, ${(y_x_norm_answer+errorEpsilon).toFixed(2)}] \\)</b>`;
         probabilityVectorQuestionObservation.style.color = "green";
+        probabilityVectorQuestionObservation.style.fontSize = "1vw";
+        probabilityVectorQuestionObservation.style.display = "block";
+        probabilityVectorQuestionObservation.style.textWrap = "balance";
         MathJax.typeset();
 
-    } else if (N_0_first != N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
+    } else if (N_0_first != N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
-    } else if (N_0_first == N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
+    } else if (N_0_first == N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance inside the exponent.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
-    } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > 0.1) {
+    } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > errorEpsilon) {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the numerator of the exponent.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     } else {

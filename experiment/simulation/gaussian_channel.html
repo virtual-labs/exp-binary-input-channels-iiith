@@ -102,7 +102,11 @@
                     <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
                         <ul style="list-style: disc;">
                             <b>Quick theory overview:</b>
-                            <li> A generator matrix is a matrix whose rows form a basis for a linear code.
+                            <li>
+                                <strong>The conditional distribution of AWGN Channel is given by:</strong>
+                                <br>
+                                <p style="text-align: center;">\( p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in
+                                \mathbb{R}. \)</p>
                             </li>
                         </ul>
                         <br>
@@ -111,12 +115,34 @@
                             <b>Procedure:</b>
 
                             <li>
-                                Enter if the received codeword is a valid vector.
+                                The question box will display a statement about the channel. According to the statement,
+                                enter the values in the input boxes provided in the expression.
                             </li>
 
                             <li>
-                                Click on <b>Yes!</b> if the matrix is a valid generator matrix, else click on
-                                <b>No!</b>.
+                                Click on the "Check" button to check your answer. If the answer is correct, "Next"
+                                button will appear. Click on the "Next" button to proceed to the next question. If the
+                                answer is incorrect, try again. Please check observation box for feedback.
+                            </li>
+
+                            <li>
+                                Next, you will be asked to choose the plot which best represents the distribution of \(
+                                Y \) given \( X \) i.e. \( p(y|x) \). Click on the plot to select it.
+                            </li>
+
+                            <li>
+                                If the answer is correct, "Next" button will appear. Click on the "Next" button to
+                                proceed to the next question. If the answer is incorrect, try again. Similar to the
+                                previous question, please check observation box for feedback.
+                            </li>
+
+                            <li>
+                                Finally, you will be asked to enter the expression that represents the probability
+                                density of the output vector \( \boldsymbol{Y} \) given input \( \boldsymbol{X} \) , at
+                                \( \boldsymbol{Y}=\boldsymbol{y}, \boldsymbol{X}=\boldsymbol{x} \). Enter the values in
+                                the input boxes provided in the expression. Check your answer by clicking on the "Check"
+                                button. If the answer is correct, the experiment is completed. If the answer is
+                                incorrect, try again. Please check observation box for feedback.
                             </li>
 
                         </ul>
@@ -207,7 +233,8 @@
                 </section>
 
                 <section id="probabilityVectorQuestion" style="display:none ;">
-                    <p> Enter the expression that represents the probability density of the output vector \( \boldsymbol{Y} \) given input
+                    <p> Enter the expression that represents the probability density of the output vector \(
+                        \boldsymbol{Y} \) given input
                         \( \boldsymbol{X} \) , at \(\boldsymbol{Y}=\boldsymbol{y}, \boldsymbol{X}=\boldsymbol{x}\): </p>
                     <br>
                     <br>
