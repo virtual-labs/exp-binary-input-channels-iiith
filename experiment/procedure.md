@@ -66,7 +66,7 @@ There are three tasks in this sub-experiment.
     <br>
     <ul>
     <li> Click on <strong>Submit</strong> to verify if the selected vectors are the possible output vectors. </li>
-    <li> Click on <strong>Reset</strong> to clear the selected vectors and start over. </li>
+    <li> Click on <strong>Reset</strong> to start over the experiment from the previous sub-experiment. </li>
     <li> Click on <strong>Next</strong> to go to the next sub-experiment.  </li>
     <li> The observation box will display feedback messages accordingly. </li> <br>
     </ul>
@@ -91,4 +91,46 @@ There are three tasks in this sub-experiment.
     <img src="images/becobs23.png" alt="alt text" width="25%"/>
     <img src="images/becobs24.png" alt="alt text" width="25%"/>
     <img src="images/becobs25.png" alt="alt text" width="25%"/>
+    </div>
+
+### Task 3: Additive White Gaussian Noise Channel
+
+1. **Enter probability values**: According to the statement about the AWGN channel displayed, enter the values in the input boxes provided in the expression that represents the probability density of the output.
+    <div style="text-align: center;"> <img src="images/awgnexp_1.png" alt="alt text" width="75%"/> </div>
+    <br>
+    <ul>
+    <li> Click on <strong>Check</strong> to verify if the entered answers are correct. </li>
+    <li> Click on <strong>Next</strong> to go to the next sub-experiment. This button will be enabled after the correct answer has been selected.</li>
+    <li> The observation box will display feedback messages accordingly. </li> <br>
+    </ul>
+    <div style="text-align: center;">
+    <img src="images/awgnobs11.png" alt="alt text" width="25%"/> 
+    <img src="images/awgnobs12.png" alt="alt text" width="25%"/>
+    <img src="images/awgnobs13.png" alt="alt text" width="25%"/>
+    </div>
+
+2. **Select Plot**: Choose the plot which best represents the distribution <strong>Y</strong> given <strong>X</strong>. Click on the plot to select it.
+    <div style="text-align: center;"> <img src="images/awgnexp_2.png" alt="alt text" width="75%"/> </div>
+    <br>
+    <ul>
+    <li> Click on <strong>Check</strong> to verify if the selected plot is correct. </li>
+    <li> Click on <strong>Next</strong> to go to the next sub-experiment. This button will be enabled after the correct answer has been selected.</li>
+    <li> The observation box will display feedback messages accordingly. </li> <br>
+    </ul>
+    <div style="text-align: center;">
+    <img src="images/awgnobs21.png" alt="alt text" width="25%"/> 
+    <img src="images/awgnobs22.png" alt="alt text" width="25%"/>
+    </div>
+
+3. **Enter probability values**: According to the statement about the AWGN channel displayed, enter the values in the input boxes provided in the expression that represents the probability density of the output vector.
+    <div style="text-align: center;"> <img src="images/awgnexp_3.png" alt="alt text" width="75%"/> </div>
+    <br>
+    <ul>
+    <li> Click on <strong>Check</strong> to verify if the entered answers are correct. </li>
+    <li> The observation box will display feedback messages accordingly. </li> <br>
+    </ul>
+    <div style="text-align: center;">
+    <img src="images/awgnobs11.png" alt="alt text" width="25%"/> 
+    <img src="images/awgnobs12.png" alt="alt text" width="25%"/>
+    <img src="images/awgnobs13.png" alt="alt text" width="25%"/>
     </div>
