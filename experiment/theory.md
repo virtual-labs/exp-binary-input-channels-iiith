@@ -17,9 +17,11 @@ The problem of designing good communication systems arises precisely due to the 
 ---
 
 <div style="text-align: center;">
-    <img src="images/bec.png" alt="Binary Erasure Channel" width="20%"/>
-    <p style="text-align: center;"><b>Binary Erasure Channel</b></p>
+    <img src="images/bec.png" alt="Binary Erasure Channel" width="40%"/>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Erasure Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1,ϵ} . The arrows indicate possible transitions when the bit passes through the channel. The values ϵ, (1-ϵ) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
 </div>
+
+---
 
 2. The **Binary Symmetric Channel**: In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
 
@@ -27,7 +29,7 @@ The problem of designing good communication systems arises precisely due to the 
 
 <div style="text-align: center;">
     <img src="images/bsc.png" alt="Binary Symmetric Channel" width="40%"/>
-    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Symmetric Channel. The left side denotes the possible inputs $\{0,1\}$ and the right denotes the possible outputs $\{0,1\}$. The arrows indicate possible transitions when the bit passes through the channel. The values $p, 1-p$ marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Symmetric Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1}. The arrows indicate possible transitions when the bit passes through the channel. The values p, (1-p) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
 </div>
 
 ---
@@ -40,7 +42,7 @@ $$Y=X+Z.$$
 
 <div style="text-align: center;">
     <img src="images/gaussian_channel.jpg" alt="Gaussian Channel" width="40%"/>
-    <p style="text-align: center;"><b>Gaussian Channel</b></p>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Additive White Gaussian Noise Channel. The left side denotes the possible input X and the right denotes the possible output Y. The arrows indicate the input X getting added to a noise Z to give the output Y.</span> </b></p>
 </div>
 
 ---

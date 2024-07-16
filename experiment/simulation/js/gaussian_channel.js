@@ -15,8 +15,10 @@ const codewords = [
 
 var randomRandomCodeword = selectRandomCodeword();
 var probabilityFlip = Math.random();
+var noiseVariance = Math.floor(Math.random() * 10) + 1;
 
-var noiseVariance = 5;
+document.getElementById("noisevariance").innerHTML = noiseVariance;
+
 var noise = parseFloat(gaussianRV(0, Math.sqrt(noiseVariance))().toFixed(2)); // clip to 2 decimal places
 var sentX = Math.random() > 0.5 ? 1 : 0;
 var receivedY = sentX + noise  // send 0 or 1
