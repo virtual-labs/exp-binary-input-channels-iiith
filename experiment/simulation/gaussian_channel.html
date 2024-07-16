@@ -102,7 +102,11 @@
                     <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
                         <ul style="list-style: disc;">
                             <b>Quick theory overview:</b>
-                            <li> A generator matrix is a matrix whose rows form a basis for a linear code.
+                            <li>
+                                <strong>The conditional distribution of AWGN Channel is given by:</strong>
+                                <br>
+                                <p style="text-align: center;">\( p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in
+                                \mathbb{R}. \)</p>
                             </li>
                         </ul>
                         <br>
@@ -111,12 +115,34 @@
                             <b>Procedure:</b>
 
                             <li>
-                                Enter if the received codeword is a valid vector.
+                                The question box will display a statement about the channel. According to the statement,
+                                enter the values in the input boxes provided in the expression.
                             </li>
 
                             <li>
-                                Click on <b>Yes!</b> if the matrix is a valid generator matrix, else click on
-                                <b>No!</b>.
+                                Click on the "Check" button to check your answer. If the answer is correct, "Next"
+                                button will appear. Click on the "Next" button to proceed to the next question. If the
+                                answer is incorrect, try again. Please check observation box for feedback.
+                            </li>
+
+                            <li>
+                                Next, you will be asked to choose the plot which best represents the distribution of \(
+                                Y \) given \( X \) i.e. \( p(y|x) \). Click on the plot to select it.
+                            </li>
+
+                            <li>
+                                If the answer is correct, "Next" button will appear. Click on the "Next" button to
+                                proceed to the next question. If the answer is incorrect, try again. Similar to the
+                                previous question, please check observation box for feedback.
+                            </li>
+
+                            <li>
+                                Finally, you will be asked to enter the expression that represents the probability
+                                density of the output vector \( \boldsymbol{Y} \) given input \( \boldsymbol{X} \) , at
+                                \( \boldsymbol{Y}=\boldsymbol{y}, \boldsymbol{X}=\boldsymbol{x} \). Enter the values in
+                                the input boxes provided in the expression. Check your answer by clicking on the "Check"
+                                button. If the answer is correct, the experiment is completed. If the answer is
+                                incorrect, try again. Please check observation box for feedback.
                             </li>
 
                         </ul>
@@ -130,11 +156,11 @@
     <div class="columns is-centered">
         <div class="column is-11-desktop is-12-tablet is-12-mobile">
             <div class="v-datalist-container components-list" id="questionStatement">
-                <p id = "awgnTopQuestion">Consider a AWGN channel with noise variance \(\dfrac{N_0}{2}=5\).</p>
+                <p id="awgnTopQuestion">Consider a AWGN channel with noise variance \(\dfrac{N_0}{2}=\) <span id="noisevariance"></span>.</p>
                 <div class="channelBlock">
 
                     <p id="sentCodeword"></p> &nbsp;
-                    <img src="images/gaussian_channel.svg" alt="SVG Image" width="200" height="300"
+                    <img src="images/gaussian_channel.svg" alt="Gaussian Channel" width="200" height="300"
                         style="padding-top:2.75em;">
 
                     &nbsp; <p id="receivedCodeword"></p>
@@ -153,9 +179,9 @@
                     <!-- https://stackoverflow.com/questions/67447944/mathjax-inputs -->
                     <!-- \( \int_{\input[sub][1em]{0}}^{\input[sup][1em]{1}} \input[integrand][10em]{}\, dx \) -->
                     <!-- \( p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(\input[sub][1em])^2}{N_0}}, \forall x,y \in \mathbb{R}. \) -->
-                    
-                    <p> Choose the plot which best represents the distribution of \( Y \) given \( X \) i.e. \( p(y|x) \) : </p>
 
+                    <p> Enter the expression that represents the probability density of the output \( Y \) given input
+                        \( X \) , at \(Y=y, X=x\) for \(x\) and \(y\) values as given above: </p>
 
                     <div class="mathContainer">
                         \( \displaystyle {p(y|x)=\frac{1}{\sqrt{\pi \input[N_0_first][2em]{}}}e^{\dfrac{-(
@@ -163,24 +189,31 @@
                     </div>
 
                     <button class="v-button" role="button" onclick="checkProbabilityQuestion()">Check</button>
-                    <button id="nextButton" class="v-button" role="button" style="display:none ;" onclick="nextProbabilityQuestion()">Next</button>
+                    <button id="nextButton" class="v-button" role="button" style="display:none ;"
+                        onclick="nextProbabilityQuestion()">Next</button>
 
                 </section>
 
 
                 <section id="distQuestion" style="display:none ;">
-                    Select the distribution of \( Y \) given \( X \) i.e. \( p(y|x) \) :
+                    Choose the plot which best represents the distribution of \( Y \) given \( X \) i.e. \( p(y|x) \) :
+                    :
                     <br>
                     <br>
 
                     <div id="gaussianCurveOptions">
-                        <div id="gaussianCurveOptionA" class="gaussianCurveOption" onclick="selectGaussianCurve('A')"></div>
-                        <div id="gaussianCurveOptionB" class="gaussianCurveOption" onclick="selectGaussianCurve('B')"></div>
-                        <div id="gaussianCurveOptionC" class="gaussianCurveOption" onclick="selectGaussianCurve('C')"></div>
-                        <div id="gaussianCurveOptionD" class="gaussianCurveOption" onclick="selectGaussianCurve('D')"></div>
+                        <div id="gaussianCurveOptionA" class="gaussianCurveOption" onclick="selectGaussianCurve('A')">
+                        </div>
+                        <div id="gaussianCurveOptionB" class="gaussianCurveOption" onclick="selectGaussianCurve('B')">
+                        </div>
+                        <div id="gaussianCurveOptionC" class="gaussianCurveOption" onclick="selectGaussianCurve('C')">
+                        </div>
+                        <div id="gaussianCurveOptionD" class="gaussianCurveOption" onclick="selectGaussianCurve('D')">
+                        </div>
                     </div>
 
-                    <button id="nextButtonDistQuestion" class="v-button" role="button" style="display:none ;" onclick="nextDistQuestion()">Next</button>
+                    <button id="nextButtonDistQuestion" class="v-button" role="button" style="display:none ;"
+                        onclick="nextDistQuestion()">Next</button>
 
                     <!-- <br>
                     <br>
@@ -200,13 +233,20 @@
                 </section>
 
                 <section id="probabilityVectorQuestion" style="display:none ;">
-                        <div class="mathContainer">
-                            \( \displaystyle {p(\boldsymbol{y}|\boldsymbol{x})=\frac{1}{\sqrt{\pi \input[N_0_first_vect][2em]{}}}e^{\dfrac{-(
-                            \input[y_x_norm][2em]{} )^2}{\input[N_0_second_vect][2em]{}}}} \)
-                        </div>
-    
-                        <button class="v-button" role="button" onclick="checkProbabilityVectorQuestion()">Check</button>
-                        <!-- <button class="v-button" role="button" onclick="nextProbabilityQuestion()">Next</button> -->
+                    <p> Enter the expression that represents the probability density of the output vector \(
+                        \boldsymbol{Y} \) given input
+                        \( \boldsymbol{X} \) , at \(\boldsymbol{Y}=\boldsymbol{y}, \boldsymbol{X}=\boldsymbol{x}\) for \(\boldsymbol{x}\) and \(\boldsymbol{y}\) values as given above: </p>
+                    <br>
+                    <br>
+
+                    <div class="mathContainer">
+                        \( \displaystyle {p(\boldsymbol{y}|\boldsymbol{x})=\frac{1}{\sqrt{\pi^4
+                        \input[N_0_first_vect][2em]{}}}e^{\dfrac{-(
+                        \input[y_x_norm][2em]{} )^2}{\input[N_0_second_vect][2em]{}}}} \)
+                    </div>
+
+                    <button class="v-button" role="button" onclick="checkProbabilityVectorQuestion()">Check</button>
+                    <!-- <button class="v-button" role="button" onclick="nextProbabilityQuestion()">Next</button> -->
                 </section>
 
             </div>

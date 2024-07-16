@@ -7,11 +7,6 @@ A communication channel is a medium through which communication happens. In this
 
 We generally use the notation $\cal X$ to denote the input alphabet of the channel. From the point of view of the receiver, the input to the channel is unknown, and hence is modelled as a random variable with some input probability distribution. We denote this input random variable as $X$. Similarly, the output of the channel, is a random variable denoted by $Y$. We assume that the output alphabet, the set of all values that the output can possibly take, is denoted by $\cal Y$. 
 
----
-**NOTE**
-INCLUDE IMAGE HERE for a general binary input channel. 
-
----
 
 ## Types of Channels considered in this virtual lab
 
@@ -19,11 +14,38 @@ The problem of designing good communication systems arises precisely due to the 
 
 1. The **Binary Erasure Channel**: The noise in this channel is modelled as a *bit-erasure*, which denotes the transmitted bit was erased or lost. Formally, in this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits along with the erasure symbol $?$, i.e., ${\cal Y}=\{0,1,?\}$. The erasure symbol $?$ denotes that the input symbol was *erased* during the process of transmission through the channel. The binary erasure channel, denoted formally as $BEC(\epsilon)$, has the property that the bit that is transmitted is erased with probability $\epsilon$. Here, $\epsilon$ denotes the *erasure probability*, and we assume $\epsilon$ is a real number between $0$ and $1$, i.e., $\epsilon\in(0,1)$. 
 
+---
+
+<div style="text-align: center;">
+    <img src="images/bec.png" alt="Binary Erasure Channel" width="40%"/>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Erasure Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1,ϵ} . The arrows indicate possible transitions when the bit passes through the channel. The values ϵ, (1-ϵ) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
+</div>
+
+---
+
 2. The **Binary Symmetric Channel**: In this channel, the input alphabet is the set of logical bits, i.e., ${\cal X}=\{0,1\}$ and the output alphabet is the set of logical bits  i.e., ${\cal Y}=\{0,1\}$. The noise of this channel is characterized by bit-flips (i.e., a transmitted $0$ bit is received as a $1$, or vice-versa). In the binary symmetric channel denoted by $BSC(p)$, we assume that bit-flip happens with some probability $p$, where $p$ is a real number and $p\in(0,1)$. 
+
+---
+
+<div style="text-align: center;">
+    <img src="images/bsc.png" alt="Binary Symmetric Channel" width="40%"/>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Symmetric Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1}. The arrows indicate possible transitions when the bit passes through the channel. The values p, (1-p) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
+</div>
+
+---
 
 3. The **Additive White Gaussian Noise Channel (AWGN)**: The AWGN channel, accepts a real number as an input, and adds to it a noise random variable $Z$ that is distributed independently according to a Gaussian distribution ${\cal N}(0,N_0/2)$, with zero-mean and variance $N_0/2$. Thus, the input alphabet and the output alphabet are both ${\cal X}=\mathbb{R}$. The relationship between the input $X$ and the output $Y$ is then given as 
 
 $$Y=X+Z.$$ 
+
+---
+
+<div style="text-align: center;">
+    <img src="images/gaussian_channel.jpg" alt="Gaussian Channel" width="40%"/>
+    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Additive White Gaussian Noise Channel. The left side denotes the possible input X and the right denotes the possible output Y. The arrows indicate the input X getting added to a noise Z to give the output Y.</span> </b></p>
+</div>
+
+---
 
 ## Conditional Distribution Associated with the Communication Channel
 
@@ -53,14 +75,6 @@ $$
 $$
 p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}. 
 $$
-
----
-**NOTE**
-[USE THIS KIND OF BLOCK to create a separate note with horizontal lines above and below on the page. ]
-
-INCLUDE FIGURES HERE FOR TRANSITIONS-BASED DEPICTION OF BINARY ERASURE AND SYMMETRIC CHANNEl. FOR GAUSSIAN CHANNEL DRAW A BLOCK DIAGRAM WHICH SHOWS INPUT BEING X to an 'adder (circle with plus)' symbol which adds Z from down and X from the left, to give Y in the right, with Y=X+Z.
-
----
 
 ## The Memoryless Property of the Channels
 

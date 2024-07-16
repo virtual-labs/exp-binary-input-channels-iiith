@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "Consider a binary erasure channel with parameter $\\epsilon=0.3$ (denoted by $BEC(0.3)$). Suppose that a $n$-length vector $\\boldsymbol{x}\\in\\mathbb{F}_2^n$ is transmitted through this channel. Which of the following is correct? ",
+      "question": "Consider a binary erasure channel with parameter $\\epsilon=0.3$ (denoted by $BEC(0.3)$). Suppose that a $n$-length vector, $\\boldsymbol{x}\\in\\mathbb{F}_2^n$, is transmitted through this channel. Which of the following is correct? ",
       "answers": {
         "a": "An erasure at the first position increases the probability of getting an erasure in the second position.",
         "b": "The event that $i$ of the $n$ bits are erased has higher probability than the event that $j$ bits are erased, if $j>i$",

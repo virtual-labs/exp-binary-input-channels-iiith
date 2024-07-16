@@ -15,16 +15,18 @@ const codewords = [
 
 var randomRandomCodeword = selectRandomCodeword();
 var probabilityFlip = Math.random();
+var noiseVariance = Math.floor(Math.random() * 10) + 1;
 
-var noiseVariance = 5;
+document.getElementById("noisevariance").innerHTML = noiseVariance;
+
 var noise = parseFloat(gaussianRV(0, Math.sqrt(noiseVariance))().toFixed(2)); // clip to 2 decimal places
 var sentX = Math.random() > 0.5 ? 1 : 0;
 var receivedY = sentX + noise  // send 0 or 1
 // var dim = randomGeneratorMatrix.dim;
 // var codelength = randomGeneratorMatrix.matrix[0].length;
 
-document.getElementById("sentCodeword").innerHTML = sentX.toString();
-document.getElementById("receivedCodeword").innerHTML = (receivedY.toFixed(2)).toString();
+document.getElementById("sentCodeword").innerHTML = 'X=' + sentX.toString();
+document.getElementById("receivedCodeword").innerHTML = 'Y=' + (receivedY.toFixed(2)).toString();
 // document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedCodeword);
 // }
 // document.getElementById("sentCodword").innerHTML = formatMatrix(randomRandomCodeword.codeword);
@@ -88,9 +90,11 @@ function checkProbabilityQuestion() {
     // });
 
     if (N_0_first / 2 == noiseVariance && N_0_second / 2 == noiseVariance && y_x == Math.abs(noise)) {
-        probabilityQuestionObservation.innerHTML = "<b>Correct Answer!!!</b>";
+        probabilityQuestionObservation.innerHTML = `<b>Great job! The correct answer is \\( \\displaystyle {p(y|x)=\\frac{1}{\\sqrt{\\pi ${2*noiseVariance}}}e^{\\dfrac{-(${Math.abs(noise).toFixed(2)})^2}{${2*noiseVariance}}}} \\) </b>`;
         probabilityQuestionObservation.style.color = "green";
         document.getElementById("nextButton").style.display = "initial";
+        // compile MathJax
+        MathJax.typeset();
         // nextProbabilityQuestion()
     }
     else if ((N_0_first / 2 != noiseVariance || N_0_second / 2 != noiseVariance) && y_x == Math.abs(noise)) {
@@ -98,11 +102,11 @@ function checkProbabilityQuestion() {
         probabilityQuestionObservation.style.color = "red";
     }
     else if ((N_0_first / 2 == noiseVariance && N_0_second / 2 == noiseVariance) && y_x != Math.abs(noise)) {
-        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check answer again.</b>";
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please check the exponent again.</b>";
         probabilityQuestionObservation.style.color = "red";
     }
     else {
-        probabilityQuestionObservation.innerHTML = "<b>Incorrect. </b>";
+        probabilityQuestionObservation.innerHTML = "<b>Incorrect. Please try again.</b>";
         probabilityQuestionObservation.style.color = "red";
     }
 
@@ -128,7 +132,7 @@ function nextProbabilityQuestion() {
     sentX = (Math.floor(Math.random() * 10 - 5));
     noiseVariance = (Math.floor(Math.random() * 5 + 1));
 
-    awgnTopQuestion.innerHTML = "Consider a AWGN channel with noise variance \\(\\dfrac{N_0}{2}=" + ((noiseVariance/2).toFixed(2)) + "\\).";
+    awgnTopQuestion.innerHTML = "Consider a AWGN channel with noise variance \\(\\dfrac{N_0}{2}=" + ((noiseVariance).toFixed(2)) + "\\).";
 
     document.getElementById("sentCodeword").innerHTML = sentX.toString();
     document.getElementById("receivedCodeword").innerHTML = 'Y';
@@ -160,7 +164,7 @@ function nextDistQuestion() {
     // probabilityVectorQuestion.style.display = "block";
 
     sentX = randomRandomCodeword.codeword;
-    document.getElementById("sentCodeword").innerHTML = formatMatrix(sentX);
+    document.getElementById("sentCodeword").innerHTML = "\\(\\boldsymbol{X}=\\)" + formatMatrix(sentX);
 
     // create a noise vector
     noise = [];
@@ -173,7 +177,7 @@ function nextDistQuestion() {
         return (bit + noise[index]).toFixed(2);
     });
 
-    document.getElementById("receivedCodeword").innerHTML = formatMatrix(receivedY);
+    document.getElementById("receivedCodeword").innerHTML = "\\(\\boldsymbol{Y}=\\)" + formatMatrix(receivedY);
     // compile MathJax
     MathJax.typeset();
 
@@ -185,13 +189,14 @@ function nextDistQuestion() {
 
 
 function checkProbabilityVectorQuestion() {
+    const errorEpsilon = 0.1;
     const probabilityVectorQuestion = document.getElementById("probabilityVectorQuestion");
     const probabilityVectorQuestionObservation = document.getElementById("probabilityVectorQuestionObservation");
     const distQuestion = document.getElementById("distQuestion");
 
     let N_0_first = parseFloat(document.querySelectorAll('.mathContainer #N_0_first_vect')[0].value);
     let N_0_second = parseFloat(document.querySelectorAll('.mathContainer #N_0_second_vect')[0].value);
-    let y_x_norm = Math.abs(parseFloat(document.querySelectorAll('.mathContainer #y_x_norm')[0].value));
+    let y_x_norm = parseFloat(document.querySelectorAll('.mathContainer #y_x_norm')[0].value);
 
     let N_0_first_answer = Math.pow(2*noiseVariance, sentX.length);
     let N_0_second_answer = 2*noiseVariance;
@@ -199,22 +204,34 @@ function checkProbabilityVectorQuestion() {
         return acc + Math.pow(noise[index], 2);
     }, 0));
 
+    let y_x_norm_answer_latex = `\\sqrt{${sentX.map((bit, index) => { return `(${receivedY[index]}-${sentX[index]})^2` }).join('+')}}`;
+
     // for y_x_norm, accept 0.1 difference
 
-    if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Correct Answer!!!</b>";
+    if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
+        probabilityVectorQuestionObservation.innerHTML = `<b>Acceptable answer! This exercise accepts the answer \\( \\displaystyle {p(\\boldsymbol{y}|\\boldsymbol{x})=\\frac{1}{\\sqrt{\\pi^4 ${N_0_first_answer}}}e^{\\dfrac{-a^2}{${N_0_second_answer}}}} \\) where \\(\\scriptsize{a = ${y_x_norm_answer_latex}}\\) and \\( a \\in [${(y_x_norm_answer-errorEpsilon).toFixed(2)}, ${(y_x_norm_answer+errorEpsilon).toFixed(2)}] \\)</b>`;
         probabilityVectorQuestionObservation.style.color = "green";
-        document.getElementById("nextButtonVector").style.display = "initial";
-    } else if (N_0_first != N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= 0.1) {
+        probabilityVectorQuestionObservation.style.fontSize = "1vw";
+        probabilityVectorQuestionObservation.style.display = "block";
+        probabilityVectorQuestionObservation.style.textWrap = "balance";
+        MathJax.typeset();
+
+    } else if (N_0_first != N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
         probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
-    } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > 0.1) {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check answer again.</b>";
+    } else if (N_0_first == N_0_first_answer && N_0_second != N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) <= errorEpsilon) {
+        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the noise variance inside the exponent.</b>";
+        probabilityVectorQuestionObservation.style.color = "red";
+    } else if (N_0_first == N_0_first_answer && N_0_second == N_0_second_answer && Math.abs(y_x_norm - y_x_norm_answer) > errorEpsilon) {
+        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. Please check the numerator of the exponent.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     } else {
-        probabilityVectorQuestionObservation.innerHTML = "<b>Incorrect. </b>";
+        probabilityVectorQuestionObservation.innerHTML = "<b>All the values are incorrect. Please try again.</b>";
         probabilityVectorQuestionObservation.style.color = "red";
     }
+
+     // compile MathJax
+     MathJax.typeset();
 
 
 }

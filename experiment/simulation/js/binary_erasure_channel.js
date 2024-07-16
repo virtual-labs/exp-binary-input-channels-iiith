@@ -1,45 +1,62 @@
 const inputcodewords = [
-    {inputcodeword: [0, 0, 0, 0],
-    },{inputcodeword: [0, 0, 0, 1],
-    },{inputcodeword: [0, 0, 1, 0],
-    },{inputcodeword: [0, 0, 1, 1],
-    },{inputcodeword: [0, 1, 0, 0],
-    },{inputcodeword: [0, 1, 0, 1],
-    },{inputcodeword: [0, 1, 1, 0],
-    },{inputcodeword: [0, 1, 1, 1],
-    },{inputcodeword: [1, 0, 0, 0],
-    },{inputcodeword: [1, 0, 0, 1],
-    },{inputcodeword: [1, 0, 1, 0],
-    },{inputcodeword: [1, 0, 1, 1],
-    },{inputcodeword: [1, 1, 0, 0],
-    },{inputcodeword: [1, 1, 0, 1],
-    },{inputcodeword: [1, 1, 1, 0],
-    },{inputcodeword: [1, 1, 1, 1],}
+    {inputcodeword: [0, 1, 0, 0]},{inputcodeword: [0, 1, 0, 1]},{inputcodeword: [1, 0, 1, 0]}
 ];
 
 const eps = "\u03B5";
 
-const wrongcodeword = [
-    {wcw: [0, eps , 0, eps],
-    },{wcw: [0, 0.64, 0, 1.23],
-    },{wcw: [0, 0, 1.24, 0],
-    },{wcw: [0, 0, 1, eps],
-    },{wcw: [0, 1, eps, 0],
-    },{wcw: [0, 1, 0.91, 1],
-    },{wcw: [eps, 1, 1, 0],
-    },{wcw: [0, 1, 1.98, 1],
-    },{wcw: [1, eps, 0, 0],
-    },{wcw: [1, 0, eps, 1],
-    },{wcw: [1, 0.09, 1, 0],
-    },{wcw: [1, 0, eps, 1],
-    },{wcw: [1, 1, 0.52, 0],
-    },{wcw: [1, eps, 0, 1],
-    },{wcw: [1, 1.73, 1, 0],
-    },{wcw: [1, 1, eps, 1],}
+const correctanswercodewrords0 = [
+    {ccw0: [0, 1, 0, 0]},
+    {ccw0: [eps, 1, 0, 0]},
+    {ccw0: [0, eps, 0, 0]},
+    {ccw0: [0, 1, eps, 0]},
+    {ccw0: [eps, 1, 0, eps]},
+    {ccw0: [0, 1, eps, eps]},
+    {ccw0: [0, eps, 0, eps]},
+    {ccw0: [eps, eps, 0, eps]},
+    {ccw0: [eps, eps, eps, eps]},
 ];
 
-document.getElementById("epsilon").innerHTML = eps;
-document.getElementById("epsilon1").innerHTML = 1 - eps;
+const correctanswercodewrords1 = [
+    {ccw1: [0, 1, 0, 1]},
+    {ccw1: [eps, 1, 0, 1]},
+    {ccw1: [0, eps, 0, 1]},
+    {ccw1: [0, 1, eps, 1]},
+    {ccw1: [eps, 1, 0, eps]},
+    {ccw1: [0, 1, eps, eps]},
+    {ccw1: [0, eps, 0, eps]},
+    {ccw1: [eps, eps, 0, eps]},
+    {ccw1: [eps, eps, eps, eps]},
+];
+
+const correctanswercodewrords2 = [
+    {ccw2: [1, 0, 1, 0]},
+    {ccw2: [eps, 0, 1, 0]},
+    {ccw2: [1, eps, 1, 0]},
+    {ccw2: [1, 0, eps, 0]},
+    {ccw2: [eps, 0, 1, eps]},
+    {ccw2: [1, 0, eps, eps]},
+    {ccw2: [1, eps, 1, eps]},
+    {ccw2: [eps, eps, 1, eps]},
+    {ccw2: [eps, eps, eps, eps]},
+];
+
+
+
+const wrongcodeword = [
+    {wcw: [1, eps , 0, 0],
+    },{wcw: [1, 1, 1, 1],
+    },{wcw: [0, 0, 1, 1],
+    },{wcw: [0, 1, 1, eps],
+    },{wcw: [1, 1, eps, 0],
+    },{wcw: [1, 1, 0, eps],
+    },{wcw: [eps, 1, 1, 0],
+    },{wcw: [0, 0, 0, 0],
+    },{wcw: [1, 0, 0, 0],
+    },{wcw: [1.24, 0.82, 1.78, 2.12],
+    },{wcw: [1.09, 0.09, 2.13, 0.46],
+    },{wcw: [0.24, 0.79, 0.98, 1.45],
+    },{wcw: [1.22, 1.35, 0.52, 0.97]}
+];
 
 var inpcodeword = Array.from(selectRandomInputCodeword().inputcodeword);
 document.getElementById("sentCodword").innerHTML = inpcodeword;
@@ -54,6 +71,19 @@ function selectRandomWrongCodeword() {
     const randomwIndex = Math.floor(Math.random() * wrongcodeword.length);
     return wrongcodeword[randomwIndex];
 }
+function selectRandomCorrectCodeword0() {
+    const randomwIndex = Math.floor(Math.random() * correctanswercodewrords0.length);
+    return correctanswercodewrords0[randomwIndex];
+}
+function selectRandomCorrectCodeword1() {
+    const randomwIndex = Math.floor(Math.random() * correctanswercodewrords1.length);
+    return correctanswercodewrords1[randomwIndex];
+}
+function selectRandomCorrectCodeword2() {
+    const randomwIndex = Math.floor(Math.random() * correctanswercodewrords2.length);
+    return correctanswercodewrords2[randomwIndex];
+}
+
 
 function formatMatrix(matrix) {
     return "[" + matrix + "]";
@@ -74,6 +104,7 @@ function reset(){
 
     becp1.style.display = "block";
     becp2.style.display = "none";
+    document.getElementById("nextpagebuttonb").style.display = "none";
 
     buttonIdentity.forEach(function(buttonId) {
         // Get the button element
@@ -88,7 +119,19 @@ function reset(){
     var wrongbuttons = [];
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
+shuffleArray(correctanswercodewrords0);
+shuffleArray(correctanswercodewrords1);
+shuffleArray(correctanswercodewrords2);
+shuffleArray(wrongcodeword);
 
 const arrslice = buttonIdentity.slice();
 
@@ -105,23 +148,43 @@ var correctcodewordsarray = [];
 var wrongcodewordsarray = [];
 
 window.onload = function() {
-    console.log("windowloaded")
+    var i = 0;
+    var j = 0;
+
     wrongbuttons.forEach(function(wansbutton) {
         // Get the button element
         var buttonw = document.getElementById(wansbutton);
-        randw = Array.from(selectRandomWrongCodeword().wcw);
+        randw = wrongcodeword[i].wcw;
         wrongcodewordsarray.push(randw)
         // Set the random number as the button's text
         buttonw.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(randw) + '</span>';
+        i = i + 1;
     });
 
     correctbuttons.forEach(function(codebutton) {
         // Get the button element
         var button = document.getElementById(codebutton);
-        rand = Array.from(selectRandomInputCodeword().inputcodeword);
-        correctcodewordsarray.push(rand)
-        // Set the random number as the button's text
-        button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+
+        if(JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[0].inputcodeword)){
+            rand = correctanswercodewrords0[j].ccw0;
+            correctcodewordsarray.push(rand)
+            button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
+        }
+
+        if (JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[1].inputcodeword)){
+            rand = correctanswercodewrords1[j].ccw1;
+            correctcodewordsarray.push(rand)
+            button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
+        }
+
+        if (JSON.stringify(inpcodeword) === JSON.stringify(inputcodewords[2].inputcodeword)){
+            rand = correctanswercodewrords2[j].ccw2;
+            correctcodewordsarray.push(rand)
+            button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+            j = j + 1;
+        }
     });
 };
 
@@ -193,11 +256,13 @@ function checkb1() {
 
         if (isCorrect) {
             becobs1.innerHTML = '{' + "[" + correctcodewordsarray[0] + "];" + "[" +  correctcodewordsarray[1] + "];" + "[" +  correctcodewordsarray[2] + ']}';
-            becobs12.innerHTML = "<b>Correct! The above selected output codewords are indeed the right possible outputs for the given codeword.</b>";
+            becobs12.innerHTML = "<b>Correct! The above selected output vectors are indeed the right possible outputs for the given codeword.</b>";
             becobs1.style.color = "green";
+            document.getElementById("nextpagebuttonb").style.display = "initial";
         } else {
-            becobs1.innerHTML = "<b>Kindly check as to what the correct output codewords could be by going through the theory.</b>";
+            becobs1.innerHTML = "<b>Kindly check as to what the correct output vectors could be by going through the theory.</b>";
             becobs1.style.color = "red";
+            becobs12.innerHTML = "";
         }
     }
 }
@@ -222,22 +287,22 @@ function compareArray(arr1, arr2) {
 
 function checkb2(){
 
-    let [a11,a12] = compareArray(correctcodewordsarray[0], sentcodeword);
-    let [a21,a22] = compareArray(correctcodewordsarray[1], sentcodeword);
-    let [a31,a32] = compareArray(correctcodewordsarray[2], sentcodeword);
+    let [a11,a12] = compareArray(correctcodewordsarray[0], inpcodeword);
+    let [a21,a22] = compareArray(correctcodewordsarray[1], inpcodeword);
+    let [a31,a32] = compareArray(correctcodewordsarray[2], inpcodeword);
 
     
-    var p11 = parseInt(document.getElementById("p11").value);
-    var p12 = parseInt(document.getElementById("p12").value);
-    var p21 = parseInt(document.getElementById("p21").value);
-    var p22 = parseInt(document.getElementById("p22").value);
-    var p31 = parseInt(document.getElementById("p31").value);
-    var p32 = parseInt(document.getElementById("p32").value);
+    var q11 = parseInt(document.getElementById("q11").value);
+    var q12 = parseInt(document.getElementById("q12").value);
+    var q21 = parseInt(document.getElementById("q21").value);
+    var q22 = parseInt(document.getElementById("q22").value);
+    var q31 = parseInt(document.getElementById("q31").value);
+    var q32 = parseInt(document.getElementById("q32").value);
 
 
-    if (isNaN(p11) || isNaN(p12) || isNaN(p21) || isNaN(p22) || isNaN(p31) || isNaN(p32) ||
-        p11 < 0 || p11 > 9 || p12 < 0 || p12 > 9 || p21 < 0 || p21 > 9 ||
-        p22 < 0 || p22 > 9 || p31 < 0 || p31 > 9 || p32 < 0 || p32 > 9) {
+    if (isNaN(q11) || isNaN(q12) || isNaN(q21) || isNaN(q22) || isNaN(q31) || isNaN(q32) ||
+        q11 < 0 || q11 > 9 || q12 < 0 || q12 > 9 || q21 < 0 || q21 > 9 ||
+        q22 < 0 || q22 > 9 || q31 < 0 || q31 > 9 || q32 < 0 || q32 > 9) {
         document.getElementById("becobs2").innerHTML = "Please enter valid positive integers below 9 into the boxes.";
         document.getElementById("becobs2").style.color = "black";
         return;
@@ -245,23 +310,23 @@ function checkb2(){
 
     switch (true) {
             
-        case (a11 === p11 && a12 === p12 && a21 === p21 && a22 === p22 && a31 === p31 && a32 === p32):
+        case (a11 === q11 && a12 === q12 && a21 === q21 && a22 === q22 && a31 === q31 && a32 === q32):
             document.getElementById("becobs2").innerHTML = "Correct Answer!";
             document.getElementById("becobs2").style.color = "green";
             break;
 
-        case (a11 !== p11 || a12 !== p12):
-            document.getElementById("becobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (a) again";
+        case (a11 !== q11 || a12 !== q12):
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (a) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
 
-        case (a21 !== p21 || a22 !== p22):
-            document.getElementById("becobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (b) again";
+        case (a21 !== q21 || a22 !== q22):
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (b) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
     
-        case (a31 !== p31 || a32 !== p32):
-            document.getElementById("becobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (c) again";
+        case (a31 !== q31 || a32 !== q32):
+            document.getElementById("becobs2").innerHTML = "Kindly check the number of erasures/non-erasures in the output vector for part (c) again.";
             document.getElementById("becobs2").style.color = "blue";
             break;
     

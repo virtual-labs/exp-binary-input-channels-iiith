@@ -47,4 +47,26 @@
     text-align: center;
 }
 
+.buttonstyle {
+    border: 2px solid black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: solid;
+    display: inline-block;
+    font-size: 12px;
+    width: 200px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+ ol {
+    list-style-type: lower-latin;
+    margin-left: 200px;
+    width: auto;
+    text-indent: 0%;
+  }
 

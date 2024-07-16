@@ -21,20 +21,17 @@ const eps = "\u03B5";
 
 const wrongans = [
     {wans: [0, eps , 0, eps],
-    },{wans: [0, 0.64, 0, 1.23],
-    },{wans: [0, 0, 1.24, 0],
+    },{wans: [1.24, 0.82, 1.78, 2.12],
+    },{wans: [1.09, 0.09, 2.13, 0.46],
     },{wans: [0, 0, 1, eps],
     },{wans: [0, 1, eps, 0],
-    },{wans: [0, 1, 0.91, 1],
+    },{wans: [0.24, 0.79, 0.98, 1.45],
     },{wans: [eps, 1, 1, 0],
-    },{wans: [0, 1, 1.98, 1],
+    },{wans: [1.22, 1.35, 0.52, 0.97],
     },{wans: [1, eps, 0, 0],
     },{wans: [1, 0, eps, 1],
-    },{wans: [1, 0.09, 1, 0],
     },{wans: [1, 0, eps, 1],
-    },{wans: [1, 1, 0.52, 0],
     },{wans: [1, eps, 0, 1],
-    },{wans: [1, 1.73, 1, 0],
     },{wans: [1, 1, eps, 1],}
 ];
 
@@ -71,6 +68,8 @@ function reset(){
 
     bscp1.style.display = "block";
     bscp2.style.display = "none";
+    document.getElementById("nextpagebutton").style.display = "none";
+    
 
     buttonIds.forEach(function(buttonId) {
         // Get the button element
@@ -85,6 +84,17 @@ function reset(){
     var wansbuttons = [];
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+shuffleArray(codewords);
+shuffleArray(wrongans);
 
 
 const arrsplice = buttonIds.slice();
@@ -102,22 +112,32 @@ var corrcw = [];
 var wroncw = [];
 
 window.onload = function() {
+    var i = 0;
+    var j = 0;
     wansbuttons.forEach(function(wansbutton) {
-        // Get the button element
+        
+        
         var buttonw = document.getElementById(wansbutton);
-        randw = Array.from(selectRandomWans().wans);
+        randw = wrongans[i].wans;
         wroncw.push(randw)
+        
         // Set the random number as the button's text
         buttonw.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(randw) + '</span>';
+        i = i + 1;
+        console.log(randw);
     });
 
     codebuttons.forEach(function(codebutton) {
         // Get the button element
+        
         var button = document.getElementById(codebutton);
-        rand = Array.from(selectRandomCodeword().codeword);
+        rand = codewords[j].codeword;
         corrcw.push(rand)
+        
         // Set the random number as the button's text
         button.innerHTML = '<span style="font-size: 20px; font-weight: bold; color: black;">' + formatMatrix(rand) + '</span>';
+        j = j + 1;
+        console.log(rand);
     });
 };
 
@@ -189,11 +209,13 @@ function check1() {
 
         if (isCorrect) {
             bscobs1.innerHTML = '{' + "[" + corrcw[0] + "];" + "[" +  corrcw[1] + "];" + "[" +  corrcw[2] + ']}';
-            bscobs12.innerHTML = "<b>Correct! The above selected output codewords are indeed the right possible outputs for the given codeword.</b>";
+            bscobs12.innerHTML = "<b>Correct! The above selected output vectors are indeed the right possible outputs for the given codeword.</b>";
             bscobs1.style.color = "green";
+            document.getElementById("nextpagebutton").style.display = "initial";
         } else {
-            bscobs1.innerHTML = "<b>Kindly check as to what the correct output codewords could be by going through the theory.</b>";
+            bscobs1.innerHTML = "<b>Kindly check as to what the correct output vectors could be by going through the theory.</b>";
             bscobs1.style.color = "red";
+            bscobs12.innerHTML = "";
         }
     }
 }
@@ -246,17 +268,17 @@ function check2(){
             break;
 
         case (a11 !== p11 || a12 !== p12):
-            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (a) again";
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input codeword and the output vector for part (a) again";
             document.getElementById("bscobs2").style.color = "blue";
             break;
 
         case (a21 !== p21 || a22 !== p22):
-            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (b) again";
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input codeword and the output vector for part (b) again";
             document.getElementById("bscobs2").style.color = "blue";
             break;
     
         case (a31 !== p31 || a32 !== p32):
-            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input and the output codewords for part (c) again";
+            document.getElementById("bscobs2").innerHTML = "Kindly check the hamming distance between the input codeword and the output vector for part (c) again";
             document.getElementById("bscobs2").style.color = "blue";
             break;
     
