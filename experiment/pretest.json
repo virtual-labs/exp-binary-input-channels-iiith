@@ -46,7 +46,7 @@
         "d": "$p_X(0)=0.3,\\hspace{0.2cm} p_X(1)=0.6$."
       },
       "explanations": {
-        "a": "Wrong answer. This option is a valid Binomial distribution, not a Bernoulli distribution.",
+        "a": "Incorrect answer. This option is a valid Binomial distribution, not a Bernoulli distribution.",
         "b": "Incorrect answer. A Bernoulli random variable takes only two values.",
         "c": "Correct answer! A Bernoulli random variable takes two possible values (often represented as $0$ or $1$), and the probabilities should sum to $1$.",
         "d": "Incorrect answer! A Bernoulli random variable does take only two possible values (often represented as $0$ or $1$. However their probabilities should sum to $1$."

@@ -40,7 +40,7 @@
     {
       "target": "index.html",
       "source": "simulation/binary_erasure_channel.html",
-      "label": "Binary Channels",
+      "label": "Simulation",
       "unit-type": "task",
       "content-type": "simulation"
     },

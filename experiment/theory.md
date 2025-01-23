@@ -1,6 +1,4 @@
-# Theory 
-
-## What is a Communication Channel? 
+### What is a Communication Channel? 
 
 A communication channel is a medium through which communication happens. In this virtual lab, we are dealing with specifically those channels that accept binary-valued inputs. We call these channels as binary-input channels. For some binary channels, we write the possible set of inputs as the *logical bits* $\{0,1\}$. That is, at any time instant, we can send a logical "0" through the channel, or a logical "1". Equivalently, we may also write the binary alphabet in the *bipolar* form, which is written as $\{+1,-1\}$. Normally, we take the logical-bit to bipolar mapping as $0\to +1$ and $1\to -1$.
 
@@ -8,7 +6,7 @@ A communication channel is a medium through which communication happens. In this
 We generally use the notation $\cal X$ to denote the input alphabet of the channel. From the point of view of the receiver, the input to the channel is unknown, and hence is modelled as a random variable with some input probability distribution. We denote this input random variable as $X$. Similarly, the output of the channel, is a random variable denoted by $Y$. We assume that the output alphabet, the set of all values that the output can possibly take, is denoted by $\cal Y$. 
 
 
-## Types of Channels considered in this virtual lab
+### Types of Channels considered in this virtual lab
 
 The problem of designing good communication systems arises precisely due to the existence of *noise* in communication channels. The noise in the communication channel is generally modelled via the conditional probabilities (of the output value, given the input value). We consider some three important types of communication channels (or in other words, noise models) in this virtual lab.
 
@@ -47,7 +45,7 @@ $$Y=X+Z.$$
 
 ---
 
-## Conditional Distribution Associated with the Communication Channel
+### Conditional Distribution Associated with the Communication Channel
 
 We can also describe the channels above using the conditional distribution of the output random variable $Y$ given by the input random variable $X$. Specifically, we have the following. 
 
@@ -76,7 +74,7 @@ $$
 p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}. 
 $$
 
-## The Memoryless Property of the Channels
+### The Memoryless Property of the Channels
 
 We assume that the three channels we have considered in this virtual lab have the *memoryless* property and exist *without feedback*. To be precise, if we transmit a $n$-length sequence of bits denoted by $(x_1,\ldots,x_n)$ through any of these channels, the output is a sequence of bits $(y_1,\ldots,y_n)$, with probability as follows. 
 
