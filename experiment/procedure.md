@@ -1,5 +1,3 @@
-### Procedure
-
 The experiment consists of three sub-experiments, through which the user will be systematically understanding the essential mathematical aspects of three important probabilistic channels, discussed in the theory part of this experiment. These channels are : 
 
 1. The Binary Erasure Channel, which erases each bit transmitted independently with probability $\epsilon$. The erasure symbol is denoted by $?$. 
@@ -8,7 +6,7 @@ The experiment consists of three sub-experiments, through which the user will be
 
 The detailed working of this experiment is as follows. 
 
-## Overview of the Experiment window
+### Overview of the Experiment window
 
 <div style="text-align: center;">
     <img src="images/exp_window.png" alt="Experiment Window" width="75%"/>
@@ -21,11 +19,11 @@ The experiment window consists of the following components:
 4. **Observation box**: The observation box displays the feedback messages based on the user's input.
 5. **Action box**: The action box contains the input elements and buttons to perform the task.
 
-## Experiment 1: Binary Input Discrete Memoryless Channels
+### Experiment 1: Binary Input Discrete Memoryless Channels
 
 There are three tasks in this sub-experiment.
 
-### Task 1: Binary Erasure Channel
+#### Task 1: Binary Erasure Channel
 
 1. **Select Output Vectors**: Select the possible output vectors ($\vec{y}$) of the Binary Erasure Channel $BEC(\epsilon)$ whose input vector $\vec{x}$ is given. After selection, the boxes will turn green and deselecting them will turn them to gray.
     <div style="text-align: center;"> <img src="images/becexp_1.png" alt="alt text" width="75%"/> </div>
@@ -59,7 +57,7 @@ There are three tasks in this sub-experiment.
     <img src="images/becobs25.png" alt="alt text" width="25%"/>
     </div>
 
-### Task 2: Binary Symmetric Channel
+#### Task 2: Binary Symmetric Channel
 
 1. **Select Output Vectors**: Select the possible output vectors ($\vec{y}$) of the Binary Symmetric Channel $BSC(p)$ whose input vector $\vec{x}$ is given. After selection, the boxes will turn green and deselecting them will turn them to gray.
     <div style="text-align: center;"> <img src="images/bscexp_1.png" alt="alt text" width="75%"/> </div>
@@ -93,7 +91,7 @@ There are three tasks in this sub-experiment.
     <img src="images/becobs25.png" alt="alt text" width="25%"/>
     </div>
 
-### Task 3: Additive White Gaussian Noise Channel
+#### Task 3: Additive White Gaussian Noise Channel
 
 1. **Enter probability values**: According to the statement about the AWGN channel displayed, enter the values in the input boxes provided in the expression that represents the probability density of the output.
     <div style="text-align: center;"> <img src="images/awgnexp_1.png" alt="alt text" width="75%"/> </div>
