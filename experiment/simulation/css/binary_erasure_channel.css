@@ -62,52 +62,10 @@
     align-items: center;
     justify-content: center;
 }
-  
- ol {
+
+ol {
     list-style-type: lower-latin;
     margin-left: 200px;
     width: auto;
     text-indent: 0%;
-  }
-
-/* Responsive MathJax Equations */
-.MathJax {
-    max-width: 100%;
-    display: inline-block;
 }
-
-/* Ensure math containers are responsive */
-.math-container {
-    width: 100%;
-}
-
-/* Hide scrollbars on larger screens */
-@media screen and (min-width: 751px) {
-    .math-container {
-        overflow: visible;
-    }
-    
-    .MathJax {
-        overflow: visible;
-    }
-}
-
-/* Add scrollbars for smaller screens */
-@media screen and (max-width: 750px) {
-    .math-container {
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-    
-    .MathJax {
-        font-size: 0.8em !important;
-    }
-}
-
-/* Prevent equation overflow */
-.MathJax_Display {
-    max-width: 100%;
-    text-align: center;
-}
-
-
