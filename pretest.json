@@ -1,0 +1,92 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Consider the following question on the binomial distribution. In an experiment, $10$ lights are independently and randomly switched on, each with a probability $p \\in (0,1)$. Which of the options best describes the probability of observing exactly $4$ lights on after this random experiment? (note that $\\binom{n}{k}$ refers to the binomial coefficient.)",
+      "answers": {
+        "a": "$\\binom{10}{4}p^6(1-p)^4$",
+        "b": "$\\binom{10}{4}p^4(1-p)^6$",
+        "c": "$p^4$",
+        "d": "$p^4(1-p)^6$",
+        "e": "None"
+      },
+      "explanations": {
+        "a": "Incorrect Answer. There are indeed $\\binom{10}{4}$ ways to switch on exactly $4$ of the $10$ lights. However, there may be an error in calculating the probability of achieving one of these configurations. Please review the approach to ascertain where the discrepancy lies.",
+        "b": "Correct Answer! Indeed, there are $\\binom{10}{4}$ ways to switch on exactly $4$ of the $10$ lights, each possible way is obtained with probability $p^4(1-p)^6$.", 
+        "c": "Incorrect answer. In this analysis, initially consider the number of ways to select the possible configurations with four lights on and the remaining six lights off. Subsequently, compute the probability of each specific configuration. This calculation must also factor in the configurations for the lights that remain off.",
+        "d": "Incorrect answer. In this analysis, initially consider the number of ways to select the possible configurations with four lights on and the remaining six lights off. Subsequently, compute the probability of each specific configuration. This calculation must also factor in the configurations for the lights that remain off.",
+        "e": "Well, One of the provided responses accurately addresses the question."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider two random variables $X$ and $Y$, taking values in sets $\\mathcal{X}=\\{0,a\\}$ and $\\mathcal{Y}=\\{b,c,5\\}$ respectively, with the following conditional probabilities, $$p_{Y|X}(b|a)=0.2, \\hspace{0.2cm} p_{Y|X}(c|a)=0.4, \\hspace{0.2cm} p_{Y|X}(c|0)=0.6, \\hspace{0.2cm} p_{Y|X}(5|0)=0.1.$$ What is the value of $p_Y(5)$, if $p_X(0)=0.3$? ",
+      "answers": {
+        "a": "0.62",
+        "b": "0.31",
+        "c": "0.05",
+        "d": "0.28"
+      },
+      "explanations": {
+        "a": "Incorrect answer. Try using the total probability rule, i.e., $p_Y(y)=\\sum_{x\\in\\mathcal{X}}p_{Y|X}(y|x)p_X(x)$.",
+        "b": "Correct answer! $p_Y(5)$ is calculated as follows: $p_Y(5)=p_{Y|X}(5|0)p_X(0)+p_{Y|X}(5|a)p_X(a)=p_{Y|X}(5|0)p_X(0)+(1-p_{Y|X}(b|a)-p_{Y|X}(c|a))p_X(a)=0.1\\times 0.3+(1-0.2-0.4)\\times(1-0.3)=0.03+0.28=0.31$.",
+        "c": "Incorrect answer. Try using the total probability rule, i.e., $p_Y(y)=\\sum_{x\\in\\mathcal{X}}p_{Y|X}(y|x)p_X(x)$.",
+        "d": "Incorrect answer. Try using the total probability rule, i.e., $p_Y(y)=\\sum_{x\\in\\mathcal{X}}p_{Y|X}(y|x)p_X(x)$."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following represents the distribution of a Bernoulli random variable $X$?",
+      "answers": {
+        "a": "$p_X(k)=\\binom{n}{k}p^k(1-p)^k, \\hspace{0.2cm} \\forall k\\in\\{0,1,...,n\\}$",
+        "b": "$p_X(0)=0.2,\\hspace{0.2cm} p_X(1)=0.1,\\hspace{0.2cm} p_X(2)=0.7$",
+        "c": "$p_X(0)=0.28,\\hspace{0.2cm} p_X(1)=0.72$.",
+        "d": "$p_X(0)=0.3,\\hspace{0.2cm} p_X(1)=0.6$."
+      },
+      "explanations": {
+        "a": "Incorrect answer. This option is a valid Binomial distribution, not a Bernoulli distribution.",
+        "b": "Incorrect answer. A Bernoulli random variable takes only two values.",
+        "c": "Correct answer! A Bernoulli random variable takes two possible values (often represented as $0$ or $1$), and the probabilities should sum to $1$.",
+        "d": "Incorrect answer! A Bernoulli random variable does take only two possible values (often represented as $0$ or $1$. However their probabilities should sum to $1$."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which of the following represents the distribution of a Gaussian random variable $X$ with mean $5$ and variance $5$?",
+      "answers": {
+        "a": "$\\frac{1}{\\sqrt{5}}e^{-\\frac{(x-25)^2}{10}}$",
+        "b": "$\\frac{1}{\\sqrt{10\\pi}}e^{-\\frac{(x-5)^2}{50}}$",
+        "c": "$\\frac{1}{\\sqrt{10\\pi}}e^{-\\frac{(x-5)^2}{10}}$",
+        "d": "$\\frac{1}{\\sqrt{10\\pi}}e^{-\\frac{|x-5|}{10}}$"
+      },
+      "explanations": {
+        "a": "Incorrect answer. A Gaussian random variable has the distribution $\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$, where the variance is $\\sigma^2$ and the mean is $\\mu$.",
+        "b": "Incorrect answer. A Gaussian random variable has the distribution $\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$, where the variance is $\\sigma^2$ and the mean is $\\mu$.",
+        "c": "Correct answer!",
+        "d": "Incorrect answer. A Gaussian random variable has the distribution $\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$, where the variance is $\\sigma^2$ and the mean is $\\mu$."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Consider a $4$-length Gaussian random vector $\\boldsymbol{X}=(X_1,X_2,X_3,X_4)$, with each component generated independently and identically (i.e., $X_i$s are i.i.d), from a Gaussian distribution with mean $2$ and variance $4$. Select the expression that describes the probability density function of $\\boldsymbol{X}$.",
+      "answers": {
+        "a": "$\\frac{1}{(8\\pi)^2}e^{-\\frac{\\sum_{i=1}^4(x_i-2)^2}{8}}$",
+        "b": "$\\frac{1}{(\\sqrt{8\\pi})}e^{-\\frac{(x-2)^2}{8}}$",
+        "c": "$\\frac{1}{(8\\pi)^4}e^{-\\frac{\\sum_{i=1}^4(x_i-2)^2}{8}}$",
+        "d": "$\\frac{1}{(4\\pi)^2}e^{-\\frac{\\sum_{i=1}^4(x_i-8)^2}{4}}$."
+      },
+      "explanations": {
+        "a": "Correct answer!",
+        "b": "Incorrect answer. The random variables are independent, so their joint probability density function is the product of their individual probability density functions, i.e., $p_{\\boldsymbol X}(x_1,x_2,x_3,x_4)=\\prod_{i=1}^4 p_{X_i}(x_i)$. Now, each $p_{X_i}(x_i)$ is a Gaussian probability distribution function with mean=$2$ and variance = $4$. Use this to arrive at the right answer.",
+        "c": "Incorrect answer. The random variables are independent, so their joint probability density function is the product of their individual probability density functions, i.e., $p_{\\boldsymbol X}(x_1,x_2,x_3,x_4)=\\prod_{i=1}^4 p_{X_i}(x_i)$. Now, each $p_{X_i}(x_i)$ is a Gaussian probability distribution function with mean=$2$ and variance = $4$. Use this to arrive at the right answer.",
+        "d": "Incorrect answer. The random variables are independent, so their joint probability density function is the product of their individual probability density functions, i.e., $p_{\\boldsymbol X}(x_1,x_2,x_3,x_4)=\\prod_{i=1}^4 p_{X_i}(x_i)$. Now, each $p_{X_i}(x_i)$ is a Gaussian probability distribution function with mean=$2$ and variance = $4$. Use this to arrive at the right answer."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    }
+  ]
+}
