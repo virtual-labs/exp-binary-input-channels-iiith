@@ -1,0 +1,112 @@
+
+/home/runner/work/exp-binary-input-channels-iiith/exp-binary-input-channels-iiith/experiment/simulation/js/binary_erasure_channel.js
+   70:10   warning  'selectRandomWrongCodeword' is defined but never used     no-unused-vars
+   74:10   warning  'selectRandomCorrectCodeword0' is defined but never used  no-unused-vars
+   78:10   warning  'selectRandomCorrectCodeword1' is defined but never used  no-unused-vars
+   82:10   warning  'selectRandomCorrectCodeword2' is defined but never used  no-unused-vars
+   94:10   warning  'reset' is defined but never used                         no-unused-vars
+  117:9    warning  'arrslice' is assigned a value but never used             no-unused-vars
+  118:9    warning  'correctbuttons' is assigned a value but never used       no-unused-vars
+  119:9    warning  'wrongbuttons' is assigned a value but never used         no-unused-vars
+  144:1    warning  'correctbuttons' is not defined                           no-undef
+  145:1    warning  'wrongbuttons' is not defined                             no-undef
+  154:5    warning  'wrongbuttons' is not defined                             no-undef
+  157:9    warning  'randw' is not defined                                    no-undef
+  158:34   warning  'randw' is not defined                                    no-undef
+  160:111  warning  'randw' is not defined                                    no-undef
+  164:5    warning  'correctbuttons' is not defined                           no-undef
+  169:13   warning  'rand' is not defined                                     no-undef
+  170:40   warning  'rand' is not defined                                     no-undef
+  171:114  warning  'rand' is not defined                                     no-undef
+  176:13   warning  'rand' is not defined                                     no-undef
+  177:40   warning  'rand' is not defined                                     no-undef
+  178:114  warning  'rand' is not defined                                     no-undef
+  183:13   warning  'rand' is not defined                                     no-undef
+  184:40   warning  'rand' is not defined                                     no-undef
+  185:114  warning  'rand' is not defined                                     no-undef
+  191:10   warning  'nextpage' is defined but never used                      no-unused-vars
+  210:10   warning  'prevpage' is defined but never used                      no-unused-vars
+  227:10   warning  'change' is defined but never used                        no-unused-vars
+  242:10   warning  'checkb1' is defined but never used                       no-unused-vars
+  253:28   warning  'correctbuttons' is not defined                           no-undef
+  288:10   warning  'checkb2' is defined but never used                       no-unused-vars
+
+/home/runner/work/exp-binary-input-channels-iiith/exp-binary-input-channels-iiith/experiment/simulation/js/binary_symmetric_channel.js
+   47:10   warning  'selectRandomWans' is defined but never used      no-unused-vars
+   58:10   warning  'reset' is defined but never used                 no-unused-vars
+   82:9    warning  'arrsplice' is assigned a value but never used    no-unused-vars
+   83:9    warning  'codebuttons' is assigned a value but never used  no-unused-vars
+   84:9    warning  'wansbuttons' is assigned a value but never used  no-unused-vars
+  108:1    warning  'codebuttons' is not defined                      no-undef
+  109:1    warning  'wansbuttons' is not defined                      no-undef
+  117:5    warning  'wansbuttons' is not defined                      no-undef
+  121:9    warning  'randw' is not defined                            no-undef
+  122:21   warning  'randw' is not defined                            no-undef
+  125:111  warning  'randw' is not defined                            no-undef
+  127:21   warning  'randw' is not defined                            no-undef
+  130:5    warning  'codebuttons' is not defined                      no-undef
+  134:9    warning  'rand' is not defined                             no-undef
+  135:21   warning  'rand' is not defined                             no-undef
+  138:110  warning  'rand' is not defined                             no-undef
+  140:21   warning  'rand' is not defined                             no-undef
+  144:10   warning  'nextpage' is defined but never used              no-unused-vars
+  163:10   warning  'prevpage' is defined but never used              no-unused-vars
+  180:10   warning  'change' is defined but never used                no-unused-vars
+  195:10   warning  'check1' is defined but never used                no-unused-vars
+  206:28   warning  'codebuttons' is not defined                      no-undef
+  241:10   warning  'check2' is defined but never used                no-unused-vars
+
+/home/runner/work/exp-binary-input-channels-iiith/exp-binary-input-channels-iiith/experiment/simulation/js/gaussian_channel.js
+   72:10   warning  'checkProbabilityQuestion' is defined but never used            no-unused-vars
+   75:11   warning  'probabilityQuestion' is assigned a value but never used        no-unused-vars
+   77:11   warning  'distQuestion' is assigned a value but never used               no-unused-vars
+   97:9    warning  'MathJax' is not defined                                        no-undef
+  120:10   warning  'nextProbabilityQuestion' is defined but never used             no-unused-vars
+  146:5    warning  'MathJax' is not defined                                        no-undef
+  151:10   warning  'nextDistQuestion' is defined but never used                    no-unused-vars
+  182:5    warning  'MathJax' is not defined                                        no-undef
+  191:10   warning  'checkProbabilityVectorQuestion' is defined but never used      no-unused-vars
+  193:11   warning  'probabilityVectorQuestion' is assigned a value but never used  no-unused-vars
+  195:11   warning  'distQuestion' is assigned a value but never used               no-unused-vars
+  217:9    warning  'MathJax' is not defined                                        no-undef
+  234:6    warning  'MathJax' is not defined                                        no-undef
+  242:7    warning  'receivedCodeword' is assigned a value but never used           no-unused-vars
+  255:10   warning  'reset' is defined but never used                               no-unused-vars
+  264:5    warning  'randomGeneratorMatrix' is not defined                          no-undef
+  264:29   warning  'selectRandomGeneratorMatrix' is not defined                    no-undef
+  265:5    warning  'dim' is not defined                                            no-undef
+  265:11   warning  'randomGeneratorMatrix' is not defined                          no-undef
+  266:5    warning  'codelength' is not defined                                     no-undef
+  266:18   warning  'randomGeneratorMatrix' is not defined                          no-undef
+  269:69   warning  'randomGeneratorMatrix' is not defined                          no-undef
+  272:5    warning  'MathJax' is not defined                                        no-undef
+  304:21   warning  'mean' is not defined                                           no-undef
+  304:35   warning  'variance' is not defined                                       no-undef
+  304:63   warning  'mean' is not defined                                           no-undef
+  304:77   warning  'variance' is not defined                                       no-undef
+  304:109  warning  'mean' is not defined                                           no-undef
+  304:119  warning  'variance' is not defined                                       no-undef
+  304:147  warning  'mean' is not defined                                           no-undef
+  304:165  warning  'variance' is not defined                                       no-undef
+  327:16   warning  'd3' is not defined                                             no-undef
+  327:37   warning  'd3' is not defined                                             no-undef
+  333:28   warning  'd3' is not defined                                             no-undef
+  354:13   warning  'd3' is not defined                                             no-undef
+  356:17   warning  'd3' is not defined                                             no-undef
+  358:13   warning  'd3' is not defined                                             no-undef
+  361:17   warning  'd3' is not defined                                             no-undef
+  363:9    warning  'yAxis' is assigned a value but never used                      no-unused-vars
+  363:17   warning  'd3' is not defined                                             no-undef
+  365:9    warning  'line' is assigned a value but never used                       no-unused-vars
+  365:16   warning  'd3' is not defined                                             no-undef
+  373:15   warning  'd3' is not defined                                             no-undef
+  383:18   warning  'd3' is not defined                                             no-undef
+  403:20   warning  'd3' is not defined                                             no-undef
+  404:20   warning  'd3' is not defined                                             no-undef
+  407:11   warning  Unnecessary semicolon                                           no-extra-semi
+  413:10   warning  'selectGaussianCurve' is defined but never used                 no-unused-vars
+  420:54   warning  'distQuestionObservation' is not defined                        no-undef
+
+✖ 102 problems (0 errors, 102 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

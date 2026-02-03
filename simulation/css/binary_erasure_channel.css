@@ -1,0 +1,71 @@
+@media screen and (min-width: 400px) {
+    .field {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+        padding-top: 1em;
+        display: inline-flex;
+
+
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .field {
+        margin-left: 1em;
+        margin-right: 1em;
+        padding-top: 1em;
+        display: inline-flex;
+    }
+
+}
+
+
+
+.wrapper {
+    display: inline-block;
+}
+
+.fraction {
+    display: flex;
+    align-items: center;
+}
+
+.stacked-fraction {
+    display: inline-block;
+    /* align-items: center; */
+    width: 10em;
+    vertical-align: middle;
+
+}
+
+.numerator {
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.denominator {
+    text-align: center;
+}
+
+.buttonstyle {
+    border: 2px solid black;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: solid;
+    display: inline-block;
+    font-size: 7px;
+    width: 200px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ol {
+    list-style-type: lower-latin;
+    margin-left: 200px;
+    width: auto;
+    text-indent: 0%;
+}
