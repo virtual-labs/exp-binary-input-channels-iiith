@@ -14,7 +14,7 @@ The problem of designing good communication systems arises precisely due to the 
 
 <div style="text-align: center;">
     <img src="images/bec.png" alt="Binary Erasure Channel"/>
-    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Erasure Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1,ϵ} . The arrows indicate possible transitions when the bit passes through the channel. The values ϵ, (1-ϵ) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
+    <p style="text-align: center;"><b><span style="color:blue">Fig 1. Depiction of a Binary Erasure Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1,ϵ} . The arrows indicate possible transitions when the bit passes through the channel. The values ϵ, (1-ϵ) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
 </div>
 
 ---
@@ -25,7 +25,7 @@ The problem of designing good communication systems arises precisely due to the 
 
 <div style="text-align: center;">
     <img src="images/bsc.png" alt="Binary Symmetric Channel"/>
-    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Binary Symmetric Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1}. The arrows indicate possible transitions when the bit passes through the channel. The values p, (1-p) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
+    <p style="text-align: center;"><b><span style="color:blue">Fig 2. Depiction of a Binary Symmetric Channel. The left side denotes the possible inputs {0,1} and the right denotes the possible outputs {0,1}. The arrows indicate possible transitions when the bit passes through the channel. The values p, (1-p) marked upon the respective arrows indicates the probability of such a transition. </span> </b></p>
 </div>
 
 ---
@@ -38,7 +38,7 @@ $$Y=X+Z.$$
 
 <div style="text-align: center;">
     <img src="images/gaussian_channel.jpg" alt="Gaussian Channel"/>
-    <p style="text-align: center;"><b><span style="color:blue">Depiction of a Additive White Gaussian Noise Channel. The left side denotes the possible input X and the right denotes the possible output Y. The arrows indicate the input X getting added to a noise Z to give the output Y.</span> </b></p>
+    <p style="text-align: center;"><b><span style="color:blue">Fig 3. Depiction of a Additive White Gaussian Noise Channel. The left side denotes the possible input X and the right denotes the possible output Y. The arrows indicate the input X getting added to a noise Z to give the output Y.</span> </b></p>
 </div>
 
 ---
@@ -54,7 +54,7 @@ p_{Y|X}(y|x)=
 \begin{cases}
 1-\epsilon&\text{if}~ y=x, \forall x \in\{0,1\},\\
 \epsilon & \text{if}~y=? .
-\end{cases}
+\end{cases} \tag{1}
 $$
 
 2. **Binary Symmetric Channel**: The conditional distribution of this channel $BSC(p)$ is given as follows.
@@ -64,12 +64,12 @@ p_{Y|X}(y|x)=
 \begin{cases}
 1-p&\text{if}~ y=x, \forall x \in\{0,1\},\\
 p & \text{if}~x\neq y .
-\end{cases}
+\end{cases} \tag{2}
 $$
 
 3. **AWGN Channel**: For this channel, we have
    $$
-   p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}.
+   p_{Y|X}(y|x)=\frac{1}{\sqrt{\pi N_0}}e^{\frac{-(y-x)^2}{N_0}}, \forall x,y \in \mathbb{R}. \tag{3}
    $$
 
 ### The Memoryless Property of the Channels
@@ -84,7 +84,7 @@ $$
 \begin{aligned}
 p((?,0,?,1)|(1,0,0,1))&=p(?|1)p(0|0)p(?|0)p(1|1)\\
 &=\epsilon\cdot(1-\epsilon)\cdot \epsilon\cdot (1-\epsilon)\\
-&=\epsilon^2(1-\epsilon)^2.
+&=\epsilon^2(1-\epsilon)^2. \tag{4}
 \end{aligned}
 $$
 
@@ -95,12 +95,12 @@ For any vector $\bm{y}\in\{0,1,\epsilon\}^n$, let $w_e(\bm{y})$ denote the numbe
 $$
 p(\bm{y}|\bm{x})=\begin{cases}
 \epsilon^{w_e(\bm{y})}(1-\epsilon)^{n-w_e(\bm{y})} & \text{if}~\bm{x} ~\text{and}~\bm{y}~\text{are compatible}\\
-0 & \text{otherwise}.
+0 & \text{otherwise}. \tag{5}
 \end{cases}
 $$
 
 Turning our focus to the $BSC(p)$, we have the following. For any $\bm{x},\bm{y}\in\mathbb{F}_2^n$, let $d(\bm{x},\bm{y})$ denote the Hamming distance (number of positions where $\bm{x}$ and $\bm{y}$ have distinct values). For example, $d((1,0,1,0),(0,0,1,1))=2$ as the two vectors are distinct in the first and the fourth locations. Then, for the $BSC(p)$ memoryless channel, we have the following.
-$$p(\bm{y}|\bm{x})=p^{d(\bm{x},\bm{y})}(1-p)^{n-d(\bm{x},\bm{y})}.$$
+$$p(\bm{y}|\bm{x})=p^{d(\bm{x},\bm{y})}(1-p)^{n-d(\bm{x},\bm{y})}. \tag{6}$$
 
 For the memoryless AWGN channel, we have, for any two vectors $\bm{x},\bm{y}\in\mathbb{R}^n$,
-$$p(\bm{y}|\bm{x})=\frac{1}{(\pi N_0)^{n/2}}e^{-\frac{(||\bm{y}-\bm{x}||^2)}{N_0}}.$$
+$$p(\bm{y}|\bm{x})=\frac{1}{(\pi N_0)^{n/2}}e^{-\frac{(||\bm{y}-\bm{x}||^2)}{N_0}}. \tag{7}$$
